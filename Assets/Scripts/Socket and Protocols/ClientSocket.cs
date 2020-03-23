@@ -9,7 +9,7 @@ using UnityEngine;
 public class ClientSocket : MonoBehaviour
 {
 
-    public enum ConnectionStatus { None, Conntecting, Connected, Reset}
+    public enum ConnectionStatus { None, Conntecting, Connected, Error}
 
     private const int MESSAGE_LEN_PACKAGE_SIZE = 2;
     private const int MESSAGE_TYPE_PACKAGE_SIZE = 1;
@@ -39,6 +39,10 @@ public class ClientSocket : MonoBehaviour
     private readonly string hostIp = "127.0.0.1";
     private readonly int port = 8222;
 
+    private bool canStart = false;      // Call InitializeSocket to start.
+    public bool autoReconnect = true;
+    private bool cleaning = false;
+
     private Thread connectThread;
     private Thread receiveThread;
     private Thread sendThread;
@@ -60,6 +64,7 @@ public class ClientSocket : MonoBehaviour
         // creates a new socket and starts the connecting process
         if ( socket == null )
         {
+            canStart = true;
             socket = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
             ConnStatus = ConnectionStatus.Conntecting;
 
@@ -114,9 +119,72 @@ public class ClientSocket : MonoBehaviour
 
     private void ReceiveThread ()
     {
-        
+        // altho we only recive 2 bytes for length and 1 byte for identity 
+        // bitConverter converts in chunks of 4 :(
+        byte[] mesLenBuffer = new byte[ 4 ]; // MESSAGE_LEN_PACKAGE_SIZE ];
+        byte[] mesTypeBuffer = new byte[ 4 ]; // MESSAGE_TYPE_PACKAGE_SIZE ];
+        byte[] mesBuffer = new byte[ MESSAGE_MAX_LENGTH ];              // Define the message buffer out of the while loop so we dont have to realocate unless we start a new thread:)
+
         while (ConnStatus == ConnectionStatus.Connected)
         {
+
+            // recive first bytes to see how long the message is
+            try
+            {
+                socket.Receive( mesLenBuffer, 0, MESSAGE_LEN_PACKAGE_SIZE, SocketFlags.None );
+                // Get the next byte to see what data the message contatines
+                socket.Receive( mesTypeBuffer, 0, MESSAGE_TYPE_PACKAGE_SIZE, SocketFlags.None );
+            }
+            catch ( System.Exception e )
+            {
+                Debug.LogError( e );
+                ConnStatus = ConnectionStatus.Error;
+                CleanUpConnection();
+                break;
+            }
+
+            if ( System.BitConverter.IsLittleEndian )
+            {   // use first two bytes reversed for little endian
+                byte tempByte = mesLenBuffer[ 0 ];
+                mesLenBuffer[ 0 ] = mesLenBuffer[ 1 ];
+                mesLenBuffer[ 1 ] = tempByte;
+            }
+
+            int messageLen = System.BitConverter.ToInt32( mesLenBuffer, 0 );
+            char messageIdenity = System.BitConverter.ToChar( mesTypeBuffer, 0 );
+
+            if ( messageLen > MESSAGE_MAX_LENGTH )
+            {
+                // TODO: send the message back to server so it can be loged as a fatal error
+                // Or should i just realocate?
+                Debug.LogErrorFormat( "FATAL ERROR: Message has exceded the max message size. The message has been loged, and discarded as a result! (Max message size: {0} Received message size: {1})",
+                                      MESSAGE_MAX_LENGTH, messageLen );
+                continue;
+
+            }
+
+            Debug.LogWarningFormat( "Recived message Len {0}; Identity {1}; ", messageLen, messageIdenity );
+
+            int result = 0;
+
+            // receive the message
+            try
+            {
+                result = socket.Receive( mesBuffer, 0, messageLen, SocketFlags.None );
+            }
+            catch ( System.Exception e )
+            {
+                Debug.LogError( e );
+                CleanUpConnection();
+                break;
+            }
+
+            string message = encoder.GetString( mesBuffer, 0, result );
+
+            Protocol.BaseProtocol protocol = Protocol.ProtocolHandler.ConvertJson( messageIdenity, message );
+
+            inboundQueue.Enqueue( protocol );
+            Debug.Log( "Inbound Message: " + message );
 
         }
 
@@ -141,8 +209,118 @@ public class ClientSocket : MonoBehaviour
 
         while ( ConnStatus == ConnectionStatus.Connected && outboundQueue.Count > 0)
         {
-            
+
+            Protocol.BaseProtocol message = outboundQueue.Dequeue() as Protocol.BaseProtocol;
+            string data = message.GetJson( out int messageLength );
+
+            // the byte converter, converts in chunks of 4, we only need the 2 for the len and 1 for the char
+            byte[] _dataLenBytes = System.BitConverter.GetBytes( messageLength );
+            byte[] _dataIdenityBytes = System.BitConverter.GetBytes( message.Identity );
+
+            byte[] dataLenBytes = new byte[ MESSAGE_LEN_PACKAGE_SIZE ];
+            byte[] dataIdenityBytes = new byte[ MESSAGE_TYPE_PACKAGE_SIZE ];
+
+            // TODO: Make this work for different packet sizes
+            // Get the bytes that we need
+            // We are working with Big endian on the server :)
+            if ( System.BitConverter.IsLittleEndian )
+            {   // use first two bytes reversed for little endian
+                byte temp = _dataLenBytes[ 0 ];
+                dataLenBytes[ 0 ] = _dataLenBytes[ 1 ];
+                dataLenBytes[ 1 ] = temp;
+                dataIdenityBytes[ 0 ] = _dataIdenityBytes[ 0 ];
+
+            }
+            else
+            {   // use last two bytes for big endian
+                dataLenBytes[ 0 ] = _dataLenBytes[ 3 ];
+                dataLenBytes[ 1 ] = _dataLenBytes[ 4 ];
+                dataIdenityBytes[ 0 ] = _dataIdenityBytes[ 4 ];
+            }
+
+            Debug.LogWarningFormat( "Sending mesage Length: {0}; Idenity: {1}", messageLength, message.Identity );
+            Debug.Log( "Outbound Message: " + data );
+
+            try
+            {
+                socket.Send( dataLenBytes );                                    // send the length of the message
+                socket.Send( dataIdenityBytes );                                // send the idenity of the message
+                socket.Send( encoder.GetBytes( data ) );                        // send the message
+            }
+            catch ( System.Exception e )
+            {
+                Debug.LogError( e );
+                connStatus = ConnectionStatus.Error;
+                CleanUpConnection();
+                break;
+            }
+
         }
+
+    }
+
+    public void Disconnect()
+    {
+        canStart = false;
+        CleanUpConnection();
+    }
+
+    /// <summary>
+    /// Cleans up the socket and threads affter disconnecting.
+    /// safe for expected and unexpected disconnections
+    /// 
+    /// </summary>
+    private void CleanUpConnection()
+    {
+
+        if ( cleaning ) return;
+
+        cleaning = true;
+
+        if ( ConnStatus == ConnectionStatus.Connected || ConnStatus == ConnectionStatus.Conntecting )
+            ConnStatus = ConnectionStatus.None;
+
+        if ( socket != null )
+        {
+            try
+            {   // this will error only if we have disconnected (most likey unexpectly)
+                socket.Shutdown( SocketShutdown.Both );
+            }
+            catch { }   // so theres no need to worry about it :)
+
+            try
+            {
+                socket.Close();
+            }
+            catch( System.Exception e)
+            {
+                Debug.LogErrorFormat( "Failed to close socket: {0]", e );
+            }
+
+        }
+
+        // check all the threads are dead.
+        if ( connectThread != null && connectThread.IsAlive )
+            connectThread.Join();
+
+        if ( receiveThread != null && receiveThread.IsAlive )
+            receiveThread.Join();
+
+        if ( sendThread != null && sendThread.IsAlive )
+            sendThread.Join();
+
+        // clean it all up ready to try again
+        socket        = null;
+        connectThread = null;
+        receiveThread = null;
+        sendThread    = null;
+
+        ConnStatus = ConnectionStatus.None;
+
+        cleaning = false;
+
+        if ( canStart && autoReconnect )
+            InitializeSocket();
 
     }
 
