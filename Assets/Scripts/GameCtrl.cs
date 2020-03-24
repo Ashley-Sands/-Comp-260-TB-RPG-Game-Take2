@@ -37,8 +37,12 @@ public class GameCtrl : MonoBehaviour
     {
         Protocol.IdentityRequest request = prto.AsType<Protocol.IdentityRequest>();
 
+        if ( string.IsNullOrWhiteSpace( playerData.nickname ) )  // only set a nickname if we dont have one already.
+            playerData.nickname = request.nickname;
+        else                                                     // otherwise return our current nickname 
+            request.nickname = playerData.nickname;
+
         request.client_id = playerData.clientId;
-        request.nickname = playerData.nickname;
         request.reg_key = playerData.reg_key;
 
         ClientSocket.ActiveSocket.SendMsg( request );
