@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class ClientSocket : MonoBehaviour
 {
-
+    public event System.Action<ConnectionStatus> connectionStatusChanged;
     public enum ConnectionStatus { None, Conntecting, Connected, Error}
 
     private const int MESSAGE_LEN_PACKAGE_SIZE = 2;
@@ -17,18 +17,22 @@ public class ClientSocket : MonoBehaviour
 
     public static ClientSocket ActiveSocket { get; private set; }
 
-    private ConnectionStatus connStatus = ConnectionStatus.None;
+    private ConnectionStatus _connStatus = ConnectionStatus.None;
     public ConnectionStatus ConnStatus {
         get{
             lock(this)
             {
-                return connStatus;
+                return _connStatus;
             }
         }
         set {
             lock ( this )
             {
-                connStatus = value;
+                if ( value != _connStatus )
+                {
+                    _connStatus = value;
+                    connectionStatusChanged?.Invoke( value );
+                }
             }
         }
     }
@@ -39,9 +43,10 @@ public class ClientSocket : MonoBehaviour
     private readonly string hostIp = "127.0.0.1";
     private readonly int port = 8222;
 
-    private bool canStart = false;      // Call InitializeSocket to start.
-    public bool autoReconnect = true;
-    private bool cleaning = false;
+    private bool _canStart = false;      // Call InitializeSocket to start.
+    public bool _autoReconnect = true;
+    private bool _clean = false;
+    private bool _cleaning = false;
 
     private Thread connectThread;
     private Thread receiveThread;
@@ -49,6 +54,27 @@ public class ClientSocket : MonoBehaviour
 
     private Queue inboundQueue;
     private Queue outboundQueue;
+
+    // make it all thread safe :)
+    private bool CanStart {
+        get { lock ( this ) return _canStart;  }
+        set { lock ( this ) _canStart = value; }
+    }
+
+    private bool AutoReconnect {
+        get { lock ( this ) return _autoReconnect; }
+        set { lock ( this ) _autoReconnect = value; }
+    }
+
+    private bool Clean {
+        get { lock ( this ) return _clean; }
+        set { lock ( this ) _clean = value; }
+    }
+
+    private bool Cleaning {
+        get { lock ( this ) return _cleaning; }
+        set { lock ( this ) _cleaning = value; }
+    }
 
     private void Awake ()
     {
@@ -58,13 +84,13 @@ public class ClientSocket : MonoBehaviour
     }
 
 
-    private void InitializeSocket()
+    public void InitializeSocket()
     {
 
         // creates a new socket and starts the connecting process
         if ( socket == null )
         {
-            canStart = true;
+            CanStart = true;
             socket = new Socket( AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp );
             ConnStatus = ConnectionStatus.Conntecting;
 
@@ -80,6 +106,19 @@ public class ClientSocket : MonoBehaviour
         // start the synchronized queues
         inboundQueue = Queue.Synchronized( new Queue() );
         outboundQueue = Queue.Synchronized( new Queue() );
+
+    }
+
+    private void Update ()
+    {
+
+        if ( Clean && !Cleaning )
+            CleanUpConnection();
+        else if ( Clean && Cleaning )
+            Clean = false;
+
+        if ( ConnStatus == ConnectionStatus.None && CanStart && AutoReconnect )
+            InitializeSocket();
 
     }
 
@@ -139,7 +178,7 @@ public class ClientSocket : MonoBehaviour
             {
                 Debug.LogError( e );
                 ConnStatus = ConnectionStatus.Error;
-                CleanUpConnection();
+                Clean = true;
                 break;
             }
 
@@ -175,7 +214,7 @@ public class ClientSocket : MonoBehaviour
             catch ( System.Exception e )
             {
                 Debug.LogError( e );
-                CleanUpConnection();
+                Clean = true;
                 break;
             }
 
@@ -250,8 +289,8 @@ public class ClientSocket : MonoBehaviour
             catch ( System.Exception e )
             {
                 Debug.LogError( e );
-                connStatus = ConnectionStatus.Error;
-                CleanUpConnection();
+                ConnStatus = ConnectionStatus.Error;
+                Clean = true;
                 break;
             }
 
@@ -261,7 +300,7 @@ public class ClientSocket : MonoBehaviour
 
     public void Disconnect()
     {
-        canStart = false;
+        CanStart = false;
         CleanUpConnection();
     }
 
@@ -273,9 +312,10 @@ public class ClientSocket : MonoBehaviour
     private void CleanUpConnection()
     {
 
-        if ( cleaning ) return;
+        if ( Cleaning ) return;
 
-        cleaning = true;
+        Cleaning = true;
+        Clean = false;
 
         if ( ConnStatus == ConnectionStatus.Connected || ConnStatus == ConnectionStatus.Conntecting )
             ConnStatus = ConnectionStatus.None;
@@ -317,11 +357,15 @@ public class ClientSocket : MonoBehaviour
 
         ConnStatus = ConnectionStatus.None;
 
-        cleaning = false;
+        Cleaning = false;
+        Clean = false;
+        print( "Deaded Sockets" );
+    }
 
-        if ( canStart && autoReconnect )
-            InitializeSocket();
-
+    private void OnDestroy ()
+    {
+        CanStart = false;
+        CleanUpConnection();
     }
 
 }

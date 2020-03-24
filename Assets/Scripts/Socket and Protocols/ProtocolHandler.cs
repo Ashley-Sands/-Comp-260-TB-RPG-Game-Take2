@@ -47,7 +47,8 @@ namespace Protocol
             protocolEvents = new Dictionary<char, ProtocolEvent>
             {
                 // Genral Commands
-                { ' ', new ProtocolEvent() }
+                { 'i', new ProtocolEvent() },   // identity request
+                { 'I', new ProtocolEvent() }    // identity status
 
                 // Dont forget to add it to Convert json as well :)
             };
@@ -108,6 +109,12 @@ namespace Protocol
 
             switch ( idenity )
             {
+                case 'i':
+                    newProto = JsonUtility.FromJson<IdentityRequest>( json );
+                    break;
+                case 'I':
+                    newProto = JsonUtility.FromJson<IdentityStatus>( json );
+                    break;
                 default:    // Not found
                     Debug.LogErrorFormat( "Unable to handle json, Failed to identify protocol {0}", idenity );
                     return null;
