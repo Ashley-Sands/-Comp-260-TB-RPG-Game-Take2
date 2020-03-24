@@ -120,6 +120,12 @@ public class ClientSocket : MonoBehaviour
         if ( ConnStatus == ConnectionStatus.None && CanStart && AutoReconnect )
             InitializeSocket();
 
+        while ( inboundQueue.Count > 0 )
+        {
+            Protocol.BaseProtocol proto = inboundQueue.Dequeue() as Protocol.BaseProtocol;
+            Protocol.ProtocolHandler.Inst.InvokeProtocol(proto);
+        }
+
     }
 
     private void ConnectThread()
@@ -145,17 +151,6 @@ public class ClientSocket : MonoBehaviour
 
     }
 
-    /// <summary>
-    /// Retreves message from cue if any are available
-    /// </summary>
-    private Object ReceiveMessage()
-    {
-        if ( inboundQueue.Count > 0 )
-            return inboundQueue.Dequeue() as Object;
-        else
-            return null;
-    }
-
     private void ReceiveThread ()
     {
         // altho we only recive 2 bytes for length and 1 byte for identity 
@@ -167,12 +162,13 @@ public class ClientSocket : MonoBehaviour
         while (ConnStatus == ConnectionStatus.Connected)
         {
 
+            int bytes = 0;
             // recive first bytes to see how long the message is
             try
             {
-                socket.Receive( mesLenBuffer, 0, MESSAGE_LEN_PACKAGE_SIZE, SocketFlags.None );
+                bytes = socket.Receive( mesLenBuffer, 0, MESSAGE_LEN_PACKAGE_SIZE, SocketFlags.None );
                 // Get the next byte to see what data the message contatines
-                socket.Receive( mesTypeBuffer, 0, MESSAGE_TYPE_PACKAGE_SIZE, SocketFlags.None );
+                bytes = socket.Receive( mesTypeBuffer, 0, MESSAGE_TYPE_PACKAGE_SIZE, SocketFlags.None );
             }
             catch ( System.Exception e )
             {
@@ -180,6 +176,14 @@ public class ClientSocket : MonoBehaviour
                 ConnStatus = ConnectionStatus.Error;
                 Clean = true;
                 break;
+            }
+            
+            if ( bytes == 0)
+            {
+                Debug.LogError( "Disconected..." );
+                ConnStatus = ConnectionStatus.None;
+                Clean = true;
+                return;
             }
 
             if ( System.BitConverter.IsLittleEndian )
@@ -233,22 +237,26 @@ public class ClientSocket : MonoBehaviour
     /// Add a message to the cue and starts the send thread if not already running
     /// </summary>
     /// <param name="message"></param>
-    private void SendMessage( Object message )
+    public void SendMsg( Protocol.BaseProtocol message )
     {
 
         outboundQueue.Enqueue( message );
 
         if ( sendThread == null || !sendThread.IsAlive )
+        {
             sendThread = new Thread( SendThread );
+            sendThread.Start();
+        }
+
 
     }
 
     private void SendThread()
     {
-
+        print( ConnStatus + " :: "+ outboundQueue.Count );
         while ( ConnStatus == ConnectionStatus.Connected && outboundQueue.Count > 0)
         {
-
+            print( "Helooo fadsfadsfasfasf" );
             Protocol.BaseProtocol message = outboundQueue.Dequeue() as Protocol.BaseProtocol;
             string data = message.GetJson( out int messageLength );
 
@@ -285,6 +293,7 @@ public class ClientSocket : MonoBehaviour
                 socket.Send( dataLenBytes );                                    // send the length of the message
                 socket.Send( dataIdenityBytes );                                // send the idenity of the message
                 socket.Send( encoder.GetBytes( data ) );                        // send the message
+
             }
             catch ( System.Exception e )
             {

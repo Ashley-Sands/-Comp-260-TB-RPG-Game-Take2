@@ -35,12 +35,13 @@ public class GameCtrl : MonoBehaviour
 
     private void IdentityRequest( Protocol.BaseProtocol prto )
     {
-
         Protocol.IdentityRequest request = prto.AsType<Protocol.IdentityRequest>();
 
         request.client_id = playerData.clientId;
         request.nickname = playerData.nickname;
         request.reg_key = playerData.reg_key;
+
+        ClientSocket.ActiveSocket.SendMsg( request );
 
     }
 
@@ -56,6 +57,8 @@ public class GameCtrl : MonoBehaviour
 
         playerData.clientId = status.client_id;
         playerData.reg_key = status.reg_key;
+
+        UIAct_MessageList.MessageList.AddMessage( string.Format( "Wellcom, {0} ({1} :: {2})", playerData.nickname, playerData.clientId, playerData.reg_key ), 20 );
 
     }
 
