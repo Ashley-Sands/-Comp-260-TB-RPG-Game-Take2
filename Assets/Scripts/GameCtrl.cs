@@ -27,5 +27,42 @@ public class GameCtrl : MonoBehaviour
         Inst = this;
     }
 
-    
+    private void Start ()
+    {
+        Protocol.ProtocolHandler.Inst.Bind( 'i', IdentityRequest );
+        Protocol.ProtocolHandler.Inst.Bind( 'I', IdentityStatus );
+    }
+
+    private void IdentityRequest( Protocol.BaseProtocol prto )
+    {
+
+        Protocol.IdentityRequest request = prto.AsType<Protocol.IdentityRequest>();
+
+        request.client_id = playerData.clientId;
+        request.nickname = playerData.nickname;
+        request.reg_key = playerData.reg_key;
+
+    }
+
+    private void IdentityStatus( Protocol.BaseProtocol prto )
+    {
+        Protocol.IdentityStatus status = prto.AsType<Protocol.IdentityStatus>();
+
+        if ( !status.ok )
+        {
+            Debug.LogError( "Error Bad Identity status" );
+            return;
+        }
+
+        playerData.clientId = status.client_id;
+        playerData.reg_key = status.reg_key;
+
+    }
+
+
+    private void OnDestroy ()
+    {
+        Protocol.ProtocolHandler.Inst.Unbind( 'i', IdentityRequest );
+        Protocol.ProtocolHandler.Inst.Unbind( 'I', IdentityStatus );
+    }
 }

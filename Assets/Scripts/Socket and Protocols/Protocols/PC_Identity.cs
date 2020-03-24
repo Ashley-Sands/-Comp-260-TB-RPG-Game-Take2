@@ -8,9 +8,9 @@ namespace Protocol
     {
         public override char Identity => 'i';
 
-        int client_id;
-        string nickname;
-        string reg_key;
+        public int client_id;
+        public string nickname;
+        public string reg_key;
 
     }
 
@@ -18,9 +18,9 @@ namespace Protocol
     {
         public override char Identity => 'I';
 
-        int client_id;
-        string reg_key;
-        bool ok;
+        public int client_id;
+        public string reg_key;
+        public bool ok;
 
     }
 }
