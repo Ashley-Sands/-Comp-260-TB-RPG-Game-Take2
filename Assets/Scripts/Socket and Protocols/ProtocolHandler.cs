@@ -48,7 +48,8 @@ namespace Protocol
             {
                 // Genral Commands
                 { 'i', new ProtocolEvent() },   // identity request
-                { 'I', new ProtocolEvent() }    // identity status
+                { 'I', new ProtocolEvent() },    // identity status
+                { 's', new ProtocolEvent() }     // Scene request
 
                 // Dont forget to add it to Convert json as well :)
             };
@@ -118,6 +119,9 @@ namespace Protocol
                     break;
                 case 'I':
                     newProto = JsonUtility.FromJson<IdentityStatus>( json );
+                    break;
+                case 's':
+                    newProto = JsonUtility.FromJson<SceneRequest>( json );
                     break;
                 default:    // Not found
                     Debug.LogErrorFormat( "Unable to handle json, Failed to identify protocol {0}", idenity );
