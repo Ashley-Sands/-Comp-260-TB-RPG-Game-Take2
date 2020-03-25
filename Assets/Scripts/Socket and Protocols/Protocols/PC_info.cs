@@ -8,10 +8,10 @@ namespace Protocol
 	{
 		public override char Identity => 'l';
 
-		string[] lobby_names;
-		int[]    lobby_ids;
-		int[]    current_clients;
-		int[]    max_clients;
+		public string[] lobby_names;
+		public int[]    lobby_ids;
+		public int[]    current_clients;
+		public int[]    max_clients;
 
 	}
 }
