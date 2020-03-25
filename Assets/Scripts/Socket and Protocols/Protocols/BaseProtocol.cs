@@ -49,5 +49,9 @@ namespace Protocol
             return chached_jsonLength;
         }
 
+        public void Send()
+        {
+            ClientSocket.ActiveSocket.SendMsg( this );
+        }
     }
 }
