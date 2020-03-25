@@ -77,12 +77,12 @@ public class UIAct_MessageList : MonoBehaviour
         if ( connStatusMsg.ContainsKey( connStatus ) )
         {
             AddMessage( connStatusMsg[ connStatus ], ( connStatus == ClientSocket.ConnectionStatus.Connected ? 30 : -1 ) );
-            connStatusMsg.Remove( connStatus ); // make sure we dont remove the newly added message
+        //    connStatusMsg.Remove( connStatus ); // make sure we dont remove the newly added message
         }
 
         // make sure the other messages are not still in the log.
-        foreach ( KeyValuePair<ClientSocket.ConnectionStatus, string> kv in connStatusMsg )
-            RemoveMessage( kv.Value );
+        //foreach ( KeyValuePair<ClientSocket.ConnectionStatus, string> kv in connStatusMsg )
+        //    RemoveMessage( kv.Value );
         
     }
 

@@ -93,7 +93,11 @@ namespace Protocol
 
         public void InvokeProtocol ( BaseProtocol proto )
         {
-            protocolEvents[ proto.Identity ].Invoke( proto );
+            if ( protocolEvents.ContainsKey( proto.Identity ) )
+                protocolEvents[ proto.Identity ]?.Invoke( proto );
+            else
+                Debug.LogErrorFormat( "Unable to invoke protocol {0}", proto.Identity );
+
         }
 
         /// <summary>
