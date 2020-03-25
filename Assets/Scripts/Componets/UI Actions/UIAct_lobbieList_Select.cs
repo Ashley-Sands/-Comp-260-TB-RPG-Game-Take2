@@ -62,7 +62,8 @@ public class UIAct_lobbieList_Select : MonoBehaviour
     private void OnDestroy ()
     {
 
-        Protocol.ProtocolHandler.Inst.Bind( 'l', UpdateLobbyList );
+        Protocol.ProtocolHandler.Inst.Unbind( 'l', UpdateLobbyList );
 
     }
+
 }

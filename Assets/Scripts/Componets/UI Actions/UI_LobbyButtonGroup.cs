@@ -21,7 +21,7 @@ public class UI_LobbyButtonGroup : MonoBehaviour
         join_button.onClick.AddListener( () => ButtonAction() );
 
         lobbyName.SetText( lobbyNameStr );
-        lobbyName.SetText( levelNameStr );
+        levelName.SetText( levelNameStr );
 
         players.SetText( string.Format( "{0} of {1}", currentPlayers, maxPlayers ) );
 
