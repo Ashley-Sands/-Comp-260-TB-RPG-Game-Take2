@@ -27,10 +27,17 @@ public class UI_LobbyButtonGroup : MonoBehaviour
 
     }
 
-    private void ButtonAction( )
+    private void ButtonAction ()
     {
         // join the server.
-        print( "Pressed "+ buttonLobbyId );
+        print( "Pressed " + buttonLobbyId );
+
+        Protocol.JoinLobbyRequest lobbyRequest = new Protocol.JoinLobbyRequest() {
+            lobby_id = buttonLobbyId
+        };
+
+        lobbyRequest.Send();
+
     }
 
 }
