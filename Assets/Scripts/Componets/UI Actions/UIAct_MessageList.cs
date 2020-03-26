@@ -64,6 +64,11 @@ public class UIAct_MessageList : MonoBehaviour
 
     }
 
+    public void Clear()
+    {
+        messages.Clear();
+    }
+
     void ConnectionStatusChanged( ClientSocket.ConnectionStatus connStatus )
     {
 
