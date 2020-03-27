@@ -40,7 +40,10 @@ public class ClientSocket : MonoBehaviour
     private Socket socket = null;
     private ASCIIEncoding encoder = new ASCIIEncoding();
 
-    private readonly string hostIp = "127.0.0.1";
+    public bool localhost = true;
+    private readonly string localhostIp = "127.0.0.1";
+    private readonly string hostIp = "159.65.80.187";
+    private string HostIp => localhost ? localhostIp : hostIp;
     private readonly int port = 8222;
 
     private bool _canStart = false;      // Call InitializeSocket to start.
@@ -135,7 +138,7 @@ public class ClientSocket : MonoBehaviour
         {
             try
             {
-                socket.Connect( new IPEndPoint( IPAddress.Parse( hostIp ), port ) );
+                socket.Connect( new IPEndPoint( IPAddress.Parse( HostIp ), port ) );
                 ConnStatus = ConnectionStatus.Connected;
             }
             catch ( System.Exception e )

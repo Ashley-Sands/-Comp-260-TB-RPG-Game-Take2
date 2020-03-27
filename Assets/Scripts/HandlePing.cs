@@ -7,6 +7,7 @@ using AMSHelpers;
 public class HandlePing : MonoBehaviour
 {
 
+    [SerializeField] private GameObject testing_hud;
     CSV csvFile;
 
     private void Awake ()
@@ -43,13 +44,13 @@ public class HandlePing : MonoBehaviour
         {
 
             InvokeRepeating( "PingGame", 0, 0.5f );
-            //pinging_HUD.SetActive( true );
+            testing_hud.SetActive( true );
         }
 
         if ( Input.GetKeyDown( KeyCode.O ) )
         {
             CancelInvoke( "PingGame" );
-            //pinging_HUD.SetActive( false );
+            testing_hud.SetActive( false );
         }
 
     }
