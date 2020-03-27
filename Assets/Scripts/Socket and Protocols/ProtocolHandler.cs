@@ -47,11 +47,13 @@ namespace Protocol
             protocolEvents = new Dictionary<char, ProtocolEvent>
             {
                 // Genral Commands
+                { '!', new ProtocolEvent() },    // server status
                 { 'i', new ProtocolEvent() },    // identity request
                 { 'I', new ProtocolEvent() },    // identity status
                 { 's', new ProtocolEvent() },    // Scene request
                 { 'l', new ProtocolEvent() },    // Lobby List
-                { 'C', new ProtocolEvent() }     // Lobby Client List
+                { 'C', new ProtocolEvent() },     // Lobby Client List
+                { 'm', new ProtocolEvent() }     // Lobby Client List
 
                 // Dont forget to add it to Convert json as well :)
             };
@@ -116,6 +118,9 @@ namespace Protocol
 
             switch ( idenity )
             {
+                case '!':
+                    newProto = JsonUtility.FromJson<ServerStatus>( json );
+                    break;
                 case 'i':
                     newProto = JsonUtility.FromJson<IdentityRequest>( json );
                     break;
@@ -130,6 +135,9 @@ namespace Protocol
                     break;
                 case 'C':
                     newProto = JsonUtility.FromJson<LobbyClientList>( json );
+                    break;
+                case 'm':
+                    newProto = JsonUtility.FromJson<Message>( json );
                     break;
                 default:    // Not found
                     Debug.LogErrorFormat( "Unable to handle json, Failed to identify protocol {0}", idenity );

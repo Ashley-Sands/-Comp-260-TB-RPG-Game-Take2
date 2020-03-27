@@ -24,6 +24,7 @@ public class UIAct_MessageList : MonoBehaviour
     private void Start ()
     {
 
+        Protocol.ProtocolHandler.Inst.Bind('!', PrintServerStatus);
         ClientSocket.ActiveSocket.connectionStatusChanged += ConnectionStatusChanged;
         InvokeRepeating("UpdateUI", 1f, 1f);
 
@@ -100,9 +101,23 @@ public class UIAct_MessageList : MonoBehaviour
         textArea.SetText( text );
     }
 
+    private void PrintServerStatus( Protocol.BaseProtocol proto )
+    {
+
+        Protocol.ServerStatus serverStatus = proto.AsType<Protocol.ServerStatus>();
+        
+        if ( !serverStatus.ok )
+        {
+            AddMessage( "Error: "+serverStatus.message, 30 );
+        }
+
+    }
+
     private void OnDestroy ()
     {
         ClientSocket.ActiveSocket.connectionStatusChanged -= ConnectionStatusChanged;
+        Protocol.ProtocolHandler.Inst.Unbind( '!', PrintServerStatus );
+
     }
 
 }

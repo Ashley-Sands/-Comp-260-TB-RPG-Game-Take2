@@ -13,12 +13,18 @@ public class UI_LobbyButtonGroup : MonoBehaviour
 
     private int buttonLobbyId = -1;
 
+    private bool binded = false;
+
     public void SetData( int lobbyId, string lobbyNameStr, string levelNameStr, int currentPlayers, int maxPlayers )
     {
-        
+
         buttonLobbyId = lobbyId;
 
-        join_button.onClick.AddListener( () => ButtonAction() );
+        if ( !binded )
+        {
+            join_button.onClick.AddListener( () => ButtonAction() );
+            binded = true;
+        }
 
         lobbyName.SetText( lobbyNameStr );
         levelName.SetText( levelNameStr );
