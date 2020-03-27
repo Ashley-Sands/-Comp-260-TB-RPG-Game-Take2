@@ -14,4 +14,15 @@ namespace Protocol
 		public int[]    max_clients;
 
 	}
+
+	class LobbyClientList : BaseProtocol
+	{
+
+		public override char Identity => 'C';
+
+		public int[] client_ids;
+		public string[] client_nicknames;
+
+	}
+
 }
