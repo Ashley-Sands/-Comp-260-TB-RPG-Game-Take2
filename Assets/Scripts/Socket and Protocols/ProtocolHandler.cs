@@ -48,6 +48,7 @@ namespace Protocol
             {
                 // Genral Commands
                 { '!', new ProtocolEvent() },    // server status
+                { '&', new ProtocolEvent() },    // ping
                 { 'i', new ProtocolEvent() },    // identity request
                 { 'I', new ProtocolEvent() },    // identity status
                 { 's', new ProtocolEvent() },    // Scene request
@@ -120,6 +121,9 @@ namespace Protocol
             {
                 case '!':
                     newProto = JsonUtility.FromJson<ServerStatus>( json );
+                    break;
+                case '&':
+                    newProto = JsonUtility.FromJson<PingTime>( json );
                     break;
                 case 'i':
                     newProto = JsonUtility.FromJson<IdentityRequest>( json );
