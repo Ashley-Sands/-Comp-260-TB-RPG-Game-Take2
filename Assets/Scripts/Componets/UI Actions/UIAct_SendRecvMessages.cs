@@ -12,6 +12,7 @@ public class UIAct_SendRecvMessages : MonoBehaviour
     void Start()
     {
         Protocol.ProtocolHandler.Inst.Bind('m', UpdateMessages);
+        output.text = "";
     }
 
     private void UpdateMessages( Protocol.BaseProtocol proto)
@@ -22,17 +23,18 @@ public class UIAct_SendRecvMessages : MonoBehaviour
 
         string outStr = string.Format( "{0}\n{1} | {2}: {3}", output.text, receivedTime, message.from_client_name, message.message );
 
-        output.SetText( outStr );
+        output.text = outStr;
 
     }
 
     public void SendMsg()
     {
 
-        if ( string.IsNullOrWhiteSpace( input.text ) )
+        if ( !string.IsNullOrWhiteSpace( input.text ) )
         {
             Protocol.Message msg = new Protocol.Message() { message = input.text };
             msg.Send();
+            input.text = "";
         }
     }
 
