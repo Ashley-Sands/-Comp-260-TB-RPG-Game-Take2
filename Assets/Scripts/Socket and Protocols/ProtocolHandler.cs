@@ -53,7 +53,8 @@ namespace Protocol
                 { 'I', new ProtocolEvent() },    // identity status
                 { 's', new ProtocolEvent() },    // Scene request
                 { 'l', new ProtocolEvent() },    // Lobby List
-                { 'C', new ProtocolEvent() },     // Lobby Client List
+                { 'O', new ProtocolEvent() },    // Lobby Info
+                { 'C', new ProtocolEvent() },    // Lobby Client List
                 { 'm', new ProtocolEvent() }     // Lobby Client List
 
                 // Dont forget to add it to Convert json as well :)
@@ -139,6 +140,9 @@ namespace Protocol
                     break;
                 case 'C':
                     newProto = JsonUtility.FromJson<LobbyClientList>( json );
+                    break;
+                case 'O':
+                    newProto = JsonUtility.FromJson<LobbyInfo>( json );
                     break;
                 case 'm':
                     newProto = JsonUtility.FromJson<Message>( json );

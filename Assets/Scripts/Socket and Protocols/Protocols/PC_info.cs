@@ -25,4 +25,15 @@ namespace Protocol
 
 	}
 
+	class LobbyInfo : BaseProtocol
+	{
+
+		public override char Identity => 'O';
+
+		public string level_name;
+		public string max_players;
+		public float starts_in;
+
+	}
+
 }
