@@ -31,7 +31,8 @@ namespace Protocol
 		public override char Identity => 'O';
 
 		public string level_name;
-		public string max_players;
+		public int min_players;
+		public int max_players;
 		public float starts_in;
 
 	}

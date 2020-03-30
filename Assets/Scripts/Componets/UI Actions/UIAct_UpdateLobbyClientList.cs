@@ -8,6 +8,8 @@ public class UIAct_UpdateLobbyClientList : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI name_text;
 
+    public int ClientCount { get; private set; }
+
     void Start()
     {
         Protocol.ProtocolHandler.Inst.Bind( 'C', Update_Clients );
@@ -18,6 +20,7 @@ public class UIAct_UpdateLobbyClientList : MonoBehaviour
         
         Protocol.LobbyClientList clientList = proto.AsType<Protocol.LobbyClientList>();
 
+        ClientCount = clientList.client_ids.Length;
         name_text.SetText( string.Join( "\n", clientList.client_nicknames ) );
 
     }
