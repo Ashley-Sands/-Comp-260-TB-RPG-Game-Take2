@@ -3049,6 +3049,7 @@ GameObject:
   - component: {fileID: 2109916462}
   - component: {fileID: 2109916465}
   - component: {fileID: 2109916466}
+  - component: {fileID: 2109916467}
   m_Layer: 0
   m_Name: UI Functions
   m_TagString: Untagged
@@ -3122,6 +3123,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 1426330823}
   output: {fileID: 52851963}
+--- !u!114 &2109916467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2109916461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7414abfc03e23dd478c2564d0f5ae6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clientList: {fileID: 2109916465}
+  level_name_text: {fileID: 60845514}
+  level_players_text: {fileID: 390981972}
+  level_start_in_text: {fileID: 772596283}
 --- !u!1 &2122480890
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,21 +35,28 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
         level_name_text.text = lobbyInfo.level_name;
         level_players_text.text = string.Format( "{0} of {1}", clientList.ClientCount, max_players );
 
+        float timeTillStart = lobbyInfo.starts_in;
+
         if ( lobbyInfo.starts_in <= 0 )
         {
             level_start_in_text.text = string.Format( "Requires {0} more players", ( min_players - clientList.ClientCount ) );
             if ( countdownTimer != null )
             {
                 StopCoroutine( countdownTimer );
-                countdownTimer = null;
+                //countdownTimer = null;
             }
         }
         else
         {
             if ( countdownTimer != null )
+            {
                 StopCoroutine( countdownTimer );
+                //countdownTimer = null;
+            }
 
-            countdownTimer = StartCoroutine( CountdownTimer(lobbyInfo.starts_in) );
+            print( CountdownTimer( timeTillStart ) + "::" + timeTillStart );
+
+            countdownTimer = StartCoroutine( CountdownTimer( timeTillStart ) );
 
         }
 
@@ -64,7 +71,7 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
             
             ttl -= 1f;
 
-            level_start_in_text.text = string.Format( "{0} seconds...", ttl );
+            level_start_in_text.text = string.Format( "{0} seconds...", Mathf.Floor(ttl) );
 
 
         }
@@ -75,7 +82,7 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
 
     private void OnDestroy ()
     {
-        Protocol.ProtocolHandler.Inst.Bind( 'O', UpdateLobbyInfo );
+        Protocol.ProtocolHandler.Inst.Unbind( 'O', UpdateLobbyInfo );
 
     }
 
