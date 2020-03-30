@@ -43,7 +43,6 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
             if ( countdownTimer != null )
             {
                 StopCoroutine( countdownTimer );
-                //countdownTimer = null;
             }
         }
         else
@@ -51,10 +50,8 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
             if ( countdownTimer != null )
             {
                 StopCoroutine( countdownTimer );
-                //countdownTimer = null;
-            }
 
-            print( CountdownTimer( timeTillStart ) + "::" + timeTillStart );
+            }
 
             countdownTimer = StartCoroutine( CountdownTimer( timeTillStart ) );
 
