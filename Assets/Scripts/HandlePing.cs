@@ -9,6 +9,7 @@ public class HandlePing : MonoBehaviour
 
     [SerializeField] private GameObject testing_hud;
     CSV csvFile;
+    public float pingRate = 0.1f; 
 
     private void Awake ()
     {
@@ -43,7 +44,7 @@ public class HandlePing : MonoBehaviour
         if ( Input.GetKeyDown( KeyCode.P ) )
         {
 
-            InvokeRepeating( "PingGame", 0, 0.5f );
+            InvokeRepeating( "PingGame", 0, pingRate );
             testing_hud.SetActive( true );
         }
 
