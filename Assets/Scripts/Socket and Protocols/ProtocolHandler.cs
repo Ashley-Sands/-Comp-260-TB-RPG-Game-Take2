@@ -55,7 +55,10 @@ namespace Protocol
                 { 'l', new ProtocolEvent() },    // Lobby List
                 { 'O', new ProtocolEvent() },    // Lobby Info
                 { 'C', new ProtocolEvent() },    // Lobby Client List
-                { 'm', new ProtocolEvent() }     // Lobby Client List
+                { 'm', new ProtocolEvent() },    // Lobby Client List
+
+                // Game actions
+                { 'M', new ProtocolEvent() }     // Move Player
 
                 // Dont forget to add it to Convert json as well :)
             };
@@ -146,6 +149,9 @@ namespace Protocol
                     break;
                 case 'm':
                     newProto = JsonUtility.FromJson<Message>( json );
+                    break;
+                case 'M':
+                    newProto = JsonUtility.FromJson<MovePlayer>( json );
                     break;
                 default:    // Not found
                     Debug.LogErrorFormat( "Unable to handle json, Failed to identify protocol {0}", idenity );
