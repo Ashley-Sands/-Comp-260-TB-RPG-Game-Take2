@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIGAct_movePlayer : MonoBehaviour
+public class UIGAct_movePlayer : UIGAct_base
 {
-    // Start is called before the first frame update
-    void Start()
+    public void MovePlayer ()
     {
-        
-    }
+        Protocol.MovePlayer movePlayer = new Protocol.MovePlayer()
+        {
+            Position = playerManager.HitLocation.location
+        };
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        playerManager.QueueAction( movePlayer );
+
     }
 }
