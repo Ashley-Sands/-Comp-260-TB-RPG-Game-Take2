@@ -67,3 +67,9 @@ crashlytics-build.properties
 
 
 # End of https://www.gitignore.io/api/unity
+
+# Mine
+# no csv including csv.meta 
+*.csv*
+
+
