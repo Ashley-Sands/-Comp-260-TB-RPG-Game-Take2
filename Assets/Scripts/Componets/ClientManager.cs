@@ -7,6 +7,13 @@ public class ClientManager : MonoBehaviour
 
 	protected int playerId = -1;  // < 0 is unset 
 
+	protected GameObject currentAction;
+
+	// ??
+	// carry slot
+	// attack slot
+	// 
+
 	public virtual void Init( int pid )
 	{
 		playerId = pid;

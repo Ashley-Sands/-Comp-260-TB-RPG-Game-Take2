@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 149786023}
   m_Layer: 0
   m_Name: Start Room - (3)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2849,7 +2849,7 @@ GameObject:
   - component: {fileID: 199717404}
   m_Layer: 0
   m_Name: Start Room - (0)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -5785,7 +5785,7 @@ GameObject:
   - component: {fileID: 287140793}
   m_Layer: 0
   m_Name: Start Room - (2)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -18012,9 +18012,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403979035}
+  - component: {fileID: 403979036}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18027,7 +18028,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403979034}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 4.08, y: 3, z: 6.99}
+  m_LocalPosition: {x: 4.08, y: 1.5, z: 6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1583493348}
@@ -18035,6 +18036,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!195 &403979036
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403979034}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &433589190
 GameObject:
   m_ObjectHideFlags: 0
@@ -18044,6 +18067,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 433589191}
+  - component: {fileID: 433589192}
   m_Layer: 0
   m_Name: Spw (0)
   m_TagString: Untagged
@@ -18066,6 +18090,29 @@ Transform:
   m_Father: {fileID: 903108828}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &433589192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 433589190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4f848377c455cf49a3ef761d532ad27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiActions:
+  - tag: Player
+    uiHold: {fileID: 187774328}
+  - tag: Relic
+    uiHold: {fileID: 1288363227}
+  - tag: NavArea
+    uiHold: {fileID: 633367318}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  pressedMarker: {fileID: 5191547992377220857}
 --- !u!1 &490448364
 GameObject:
   m_ObjectHideFlags: 0
@@ -18878,7 +18925,7 @@ GameObject:
   - component: {fileID: 826170757}
   m_Layer: 0
   m_Name: Start Room - (1)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -22070,7 +22117,7 @@ GameObject:
   - component: {fileID: 917436985}
   m_Layer: 0
   m_Name: Gard Object (0)
-  m_TagString: Untagged
+  m_TagString: Relic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26936,7 +26983,7 @@ GameObject:
   - component: {fileID: 971829537}
   m_Layer: 0
   m_Name: Wall - (1)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -27664,7 +27711,7 @@ GameObject:
   - component: {fileID: 1147268739}
   m_Layer: 0
   m_Name: Wall - (0)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -35109,7 +35156,7 @@ GameObject:
   - component: {fileID: 1581027633}
   m_Layer: 0
   m_Name: Wall - (3)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -35414,10 +35461,9 @@ GameObject:
   - component: {fileID: 1583493352}
   - component: {fileID: 1583493351}
   - component: {fileID: 1583493350}
-  - component: {fileID: 1583493349}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35430,35 +35476,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583493347}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1559695406}
   m_Father: {fileID: 403979035}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!195 &1583493349
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583493347}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5000001
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &1583493350
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -35469,7 +35493,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
+  m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -35693,7 +35717,7 @@ GameObject:
   - component: {fileID: 1641831953}
   m_Layer: 0
   m_Name: Main Room
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -39408,7 +39432,7 @@ GameObject:
   - component: {fileID: 1763249524}
   m_Layer: 0
   m_Name: Wall - (2)
-  m_TagString: Untagged
+  m_TagString: NavArea
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -40029,7 +40053,7 @@ GameObject:
   - component: {fileID: 1819941116}
   m_Layer: 0
   m_Name: Collectable
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41015,3 +41039,80 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!23 &655602672968037069
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976979403370944871}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 2
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 392c5477e7e4b974db4c9c53cd9a3383, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!4 &5191547992377220857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976979403370944871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0.5, z: 7}
+  m_LocalScale: {x: 2, y: 1.5, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6886891920087861995
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8976979403370944871}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &8976979403370944871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5191547992377220857}
+  - component: {fileID: 6886891920087861995}
+  - component: {fileID: 655602672968037069}
+  m_Layer: 0
+  m_Name: Pressed marker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1

@@ -7,15 +7,30 @@ public class PlayerManager : ClientManager
 {
 
 	[SerializeField] private UiActionGroup[] uiActions;
-	private int activeUiGroup = -1;
+	[SerializeField] private Transform pressedMarker;
+
+	private int activeUiGroup = -1;		// < 0 is none active.
 	[SerializeField] private LayerMask layerMask;
 	private HitLocation hitLocation;
+
+	private List<GameObject> actionQueue;
+
+	private void Awake ()
+	{
+		
+		// make sure all the ui is not active
+		foreach ( UiActionGroup uia in uiActions )
+		{
+			uia.uiHold.SetActive( false );
+		}
+
+	}
 
 	private void Update ()
 	{
 
 		// this should on be active when this player is the current player
-		if ( !GameCtrl.Inst.CurrentClientIsPlayer ) return;
+		//if ( !GameCtrl.Inst.CurrentClientIsPlayer ) return;
 
 		if ( Input.GetMouseButtonDown( 0 ) )
 		{
@@ -27,10 +42,16 @@ public class PlayerManager : ClientManager
 			if ( Physics.Raycast( ray, out hit, 300, layerMask ) )
 			{
 				hitLocation.Set( hit.point, hit.collider.gameObject );
+				SetUiGroup();
+
+				Vector3 pressedLocation = hit.point;
+				pressedLocation.y = 0.5f;
+				pressedMarker.position = pressedLocation;
+
+				print( hit.point + " :: " + hit.collider.gameObject.name + ", Active group: "+activeUiGroup );
 			}
 
-			SetUiGroup();
-
+			
 		}
 
 	}
@@ -57,7 +78,7 @@ public class PlayerManager : ClientManager
 
 		if ( activeUiGroup == nextUiGroup ) return;	// no change.
 
-		if ( activeUiGroup > -1 )	// switch of the current object
+		if ( activeUiGroup > -1 )	// switch off the current ui object
 		{
 			uiActions[ activeUiGroup ].uiHold.SetActive( false );
 		}
@@ -74,6 +95,7 @@ public class PlayerManager : ClientManager
 
 }
 
+[System.Serializable]
 public struct UiActionGroup
 {
 	
@@ -82,6 +104,7 @@ public struct UiActionGroup
 
 }
 
+[System.Serializable]
 public struct HitLocation
 {
 	
