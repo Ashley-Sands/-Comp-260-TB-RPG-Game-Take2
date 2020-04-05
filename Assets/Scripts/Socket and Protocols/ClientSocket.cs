@@ -236,8 +236,14 @@ public class ClientSocket : MonoBehaviour
 
     }
 
+    public void LocalSendMsg( Protocol.BaseProtocol message )
+    {
+        message.from_client_name = GameCtrl.Inst.playerData.nickname;
+        inboundQueue.Enqueue( message );
+    }
+
     /// <summary>
-    /// Add a message to the cue and starts the send thread if not already running
+    /// Add a message to the que and starts the send thread if not already running
     /// </summary>
     /// <param name="message"></param>
     public void SendMsg( Protocol.BaseProtocol message )

@@ -11,7 +11,7 @@ public class PlayerManager : ClientManager
 
 	private int activeUiGroup = -1;		// < 0 is none active.
 	[SerializeField] private LayerMask layerMask;
-	private HitLocation hitLocation;
+	public HitLocation HitLocation { get; private set; }
 
 	private Queue<Protocol.BaseGameAction> actionQueue;
 	private Protocol.BaseGameAction nextAction;
@@ -42,7 +42,7 @@ public class PlayerManager : ClientManager
 
 			if ( Physics.Raycast( ray, out hit, 300, layerMask ) )
 			{
-				hitLocation.Set( hit.point, hit.collider.gameObject );
+				HitLocation.Set( hit.point, hit.collider.gameObject );
 				SetUiGroup();
 
 				Vector3 pressedLocation = hit.point;
@@ -69,7 +69,7 @@ public class PlayerManager : ClientManager
 		for ( int i = 0; i < uiActions.Length; i++ )
 		{
 			
-			if ( hitLocation.obj.CompareTag( uiActions[i].tag ) )
+			if ( HitLocation.obj.CompareTag( uiActions[i].tag ) )
 			{
 				nextUiGroup = i;
 				break;
@@ -125,7 +125,11 @@ public class PlayerManager : ClientManager
 		if ( nextAction == null && actionQueue.Count > 0 )
 		{
 			nextAction = actionQueue.Dequeue();
-			nextAction.Send();
+			nextAction.player_id = playerId;
+
+			//ClientSocket.ActiveSocket.SendMsg( nextAction );
+			ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
+			Debug.Log( "Sending action from playerMannager :D" );
 		}
 
 

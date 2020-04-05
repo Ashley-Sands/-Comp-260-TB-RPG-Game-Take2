@@ -83,6 +83,14 @@ namespace Protocol
 
         }
 
+        public void BindDict( Dictionary<char, protocol_event> functs )
+        {
+
+            foreach ( KeyValuePair<char, protocol_event> pe in functs )
+                Bind( pe.Key, pe.Value );
+
+        }
+
         /// <summary>
         /// Unbinds function to protocol callback
         /// </summary>
@@ -98,6 +106,14 @@ namespace Protocol
             }
 
             protocolEvents[ idenity ].callback -= protocolFunc;
+
+        }
+
+        public void UnbindDict ( Dictionary<char, protocol_event> functs )
+        {
+
+            foreach ( KeyValuePair<char, protocol_event> pe in functs )
+                Unbind( pe.Key, pe.Value );
 
         }
 
