@@ -13,7 +13,8 @@ public class PlayerManager : ClientManager
 	[SerializeField] private LayerMask layerMask;
 	private HitLocation hitLocation;
 
-	private List<GameObject> actionQueue;
+	private Queue<Protocol.BaseGameAction> actionQueue;
+	private Protocol.BaseGameAction nextAction;
 
 	private void Awake ()
 	{
@@ -92,6 +93,48 @@ public class PlayerManager : ClientManager
 
 	}
 
+	public override void CompleatAction ()
+	{
+		
+		base.CompleatAction();
+		nextAction = null;
+
+		NextAction();
+
+	}
+
+	/// <summary>
+	/// Queues a player action. Triggering it there is no action currently
+	/// </summary>
+	/// <param name="gameAction"></param>
+	public void QueueAction( Protocol.BaseGameAction gameAction )
+	{
+		actionQueue.Enqueue( gameAction );
+
+		if ( nextAction == null )
+			NextAction();
+
+	}
+
+	/// <summary>
+	/// triggers the plauers next action in the queue
+	/// </summary>
+	private void NextAction()
+	{
+
+		if ( nextAction == null && actionQueue.Count > 0 )
+		{
+			nextAction = actionQueue.Dequeue();
+			nextAction.Send();
+		}
+
+
+	}
+
+	public void ClearActions()
+	{
+		actionQueue.Clear();
+	}
 
 }
 
