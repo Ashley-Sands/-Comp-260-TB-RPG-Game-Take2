@@ -11,16 +11,24 @@ public class GameCtrl : MonoBehaviour
     private static GameCtrl inst;
     public static GameCtrl Inst {
         get { return inst; }
-        set{
+        set {
             if ( inst == null )
                 inst = value;
         }
     }
 
-    public Player playerData;   
+    public Player playerData;
 
     public Client[] clients;    // all the clients including the player.
     public int currentClientId = 0;
+
+    public Client CurrentClient {
+        get{
+            return clients.Length == 0 ? null : clients[ currentClientId ];
+        }
+    }
+
+    public bool CurrentClientIsPlayer => playerData.compareClient( CurrentClient );
 
     void Awake()
     {

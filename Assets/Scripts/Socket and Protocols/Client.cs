@@ -25,4 +25,9 @@ public class Player : Client
 
     public string reg_key;
 
+    public bool compareClient( Client client )
+    {
+        return client.clientId == clientId;
+    }
+
 }
