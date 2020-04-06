@@ -48,6 +48,7 @@ namespace Protocol
             {
                 // Genral Commands
                 { '!', new ProtocolEvent() },    // server status
+                { '?', new ProtocolEvent() },    // client status
                 { '&', new ProtocolEvent() },    // ping
                 { 'i', new ProtocolEvent() },    // identity request
                 { 'I', new ProtocolEvent() },    // identity status
@@ -57,6 +58,7 @@ namespace Protocol
                 { 'C', new ProtocolEvent() },    // Lobby Client List
                 { 'm', new ProtocolEvent() },    // Lobby Client List
 
+                // Game actions
                 // Game actions
                 { 'M', new ProtocolEvent() }     // Move Player
 
@@ -141,6 +143,9 @@ namespace Protocol
             {
                 case '!':
                     newProto = JsonUtility.FromJson<ServerStatus>( json );
+                    break;      
+                case '?':
+                    newProto = JsonUtility.FromJson<ClientStatus>( json );
                     break;
                 case '&':
                     newProto = JsonUtility.FromJson<PingTime>( json );

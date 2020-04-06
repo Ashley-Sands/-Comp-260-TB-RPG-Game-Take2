@@ -26,4 +26,29 @@ namespace Protocol
 
 
     }
+
+    public enum ClientStatusType { Client = 0, SceneLoaded = 1, GameReady = 2 }
+
+    public class ClientStatus : BaseProtocol
+    {
+
+        public override char Identity => '?';
+
+        public ClientStatusType StatusType {
+            get {
+                return (ClientStatusType)serverStatusType;
+            }
+            set {
+                serverStatusType = (int)value;
+            }
+
+        }
+
+        public int serverStatusType;
+        public bool ok;
+        public string message;
+
+
+    }
+
 }
