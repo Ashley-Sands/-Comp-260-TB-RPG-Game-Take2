@@ -12,15 +12,15 @@ namespace Protocol
 
         public ServerStatusType StatusType{
             get{
-                return (ServerStatusType)serverStatusType;
+                return (ServerStatusType)status_type;
             }
             set {
-                serverStatusType = (int)value;
+                status_type = (int)value;
             }
 
         }
 
-        public int serverStatusType;
+        public int status_type;
         public bool ok;
         public string message;
 
@@ -36,15 +36,15 @@ namespace Protocol
 
         public ClientStatusType StatusType {
             get {
-                return (ClientStatusType)serverStatusType;
+                return (ClientStatusType)status_type;
             }
             set {
-                serverStatusType = (int)value;
+                status_type = (int)value;
             }
 
         }
 
-        public int serverStatusType;
+        public int status_type;
         public bool ok;
         public string message;
 
