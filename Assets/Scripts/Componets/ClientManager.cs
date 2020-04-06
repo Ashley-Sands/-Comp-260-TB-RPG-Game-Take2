@@ -37,11 +37,10 @@ public class ClientManager : MonoBehaviour
 	public void MovePlayer( Protocol.BaseProtocol proto)
 	{
 		Protocol.MovePlayer movePlayer = proto.AsType<Protocol.MovePlayer>();
-		print( "helloo" );
 
 		if ( movePlayer.player_id == playerId )
 		{
-			print( "World" );
+
 			clientAgent.MoveAgent( movePlayer.Position );
 			currentAction = clientAgent;
 		}

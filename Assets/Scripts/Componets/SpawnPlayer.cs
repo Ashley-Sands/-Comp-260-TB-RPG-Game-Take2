@@ -7,8 +7,8 @@ public class SpawnPlayer : MonoBehaviour
 
     [Tooltip("the spwan id is where player of player id will be spwaned :) ")]
     [SerializeField] private int spawnId = -1;
-    [SerializeField] GameObject playerPrefab;
-    [SerializeField] GameObject clientPrefab;
+    [SerializeField] ClientManager playerPrefab;
+    [SerializeField] ClientManager clientPrefab;
 
     void Awake()
     {
@@ -25,7 +25,7 @@ public class SpawnPlayer : MonoBehaviour
         for (int i = 0; i < clients.Length; i++ )
         {
             Client client = clients[ i ];
-            GameObject spawnedClient;
+            ClientManager spawnedClient = null;
             print( "Helloo World :) :: " + client.playerId + " :: "+ spawnId );
 
             if ( client.playerId == spawnId )
@@ -40,6 +40,8 @@ public class SpawnPlayer : MonoBehaviour
                 {
                     spawnedClient = Instantiate( clientPrefab, transform.position, Quaternion.identity );
                 }
+
+                spawnedClient?.Init( spawnId );
 
                 return;
 
