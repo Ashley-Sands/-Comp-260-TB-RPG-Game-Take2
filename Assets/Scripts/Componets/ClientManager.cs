@@ -18,19 +18,15 @@ public class ClientManager : MonoBehaviour
 	// attack slot
 	// 
 
-	private void Awake ()
-	{
-		bindActions = new Dictionary<char, Protocol.protocol_event>()
-	{
-		{ 'M', MovePlayer }
-	};
-	}
-
 	private void Start ()
 	{
-		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
 
-		Protocol.ProtocolHandler.Inst.Bind( 'M', MovePlayer );
+		bindActions = new Dictionary<char, Protocol.protocol_event>()
+		{
+			{ 'M', MovePlayer }
+		};
+
+		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
 	}
 
 	public virtual void Init( int pid )
@@ -41,9 +37,11 @@ public class ClientManager : MonoBehaviour
 	public void MovePlayer( Protocol.BaseProtocol proto)
 	{
 		Protocol.MovePlayer movePlayer = proto.AsType<Protocol.MovePlayer>();
+		print( "helloo" );
 
 		if ( movePlayer.player_id == playerId )
 		{
+			print( "World" );
 			clientAgent.MoveAgent( movePlayer.Position );
 			currentAction = clientAgent;
 		}

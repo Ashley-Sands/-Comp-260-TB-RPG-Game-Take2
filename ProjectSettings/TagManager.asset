@@ -8,6 +8,7 @@ TagManager:
   - Collectable
   - NavArea
   - Relic
+  - RayBlocker
   layers:
   - Default
   - TransparentFX

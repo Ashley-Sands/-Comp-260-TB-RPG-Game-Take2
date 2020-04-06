@@ -127,6 +127,8 @@ public class ClientSocket : MonoBehaviour
         {
             Protocol.BaseProtocol proto = inboundQueue.Dequeue() as Protocol.BaseProtocol;
             Protocol.ProtocolHandler.Inst.InvokeProtocol(proto);
+            print( "Local message dequeued" );
+
         }
 
     }
@@ -240,6 +242,7 @@ public class ClientSocket : MonoBehaviour
     {
         message.from_client_name = GameCtrl.Inst.playerData.nickname;
         inboundQueue.Enqueue( message );
+        print( "Local message queued" );
     }
 
     /// <summary>

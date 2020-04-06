@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-[RequireComponent( typeof( NavMeshAgent ), typeof(ClientManager) )]
+[RequireComponent( typeof( NavMeshAgent ))]
 public class ClientAgent : ClientAction
 {
 
-    private ClientManager clientManager;
+    [SerializeField] private ClientManager clientManager;
     private NavMeshAgent agent;
 
     [SerializeField] private float moveSpeed = 5;
@@ -20,7 +20,6 @@ public class ClientAgent : ClientAction
 
     void Awake()
     {
-        clientManager = GetComponent<ClientManager>();
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -49,8 +48,10 @@ public class ClientAgent : ClientAction
     {
 
         location = loc;
+        agent.isStopped = false;
+        agent.SetDestination( loc );
         complete = false;
-
+        print( "GOGOGOGO" );
     }
 
     public override void CancelAction ()

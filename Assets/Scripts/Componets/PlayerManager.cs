@@ -11,9 +11,11 @@ public class PlayerManager : ClientManager
 
 	private int activeUiGroup = -1;		// < 0 is none active.
 	[SerializeField] private LayerMask layerMask;
-	public HitLocation HitLocation { get; private set; }
 
-	private Queue<Protocol.BaseGameAction> actionQueue;
+	private HitLocation hitLocation;
+	public HitLocation HitLocation { get => hitLocation; }
+
+	private Queue<Protocol.BaseGameAction> actionQueue = new Queue<Protocol.BaseGameAction>();
 	private Protocol.BaseGameAction nextAction;
 
 	private void Awake ()
@@ -42,7 +44,10 @@ public class PlayerManager : ClientManager
 
 			if ( Physics.Raycast( ray, out hit, 300, layerMask ) )
 			{
-				HitLocation.Set( hit.point, hit.collider.gameObject );
+				if ( hit.collider.gameObject.CompareTag( "RayBlocker" ) ) return;
+
+				hitLocation.Set( hit.point, hit.collider.gameObject );
+
 				SetUiGroup();
 
 				Vector3 pressedLocation = hit.point;
@@ -68,8 +73,7 @@ public class PlayerManager : ClientManager
 
 		for ( int i = 0; i < uiActions.Length; i++ )
 		{
-			
-			if ( HitLocation.obj.CompareTag( uiActions[i].tag ) )
+			if ( hitLocation.obj.CompareTag( uiActions[i].tag ) )
 			{
 				nextUiGroup = i;
 				break;
@@ -100,7 +104,7 @@ public class PlayerManager : ClientManager
 		nextAction = null;
 
 		NextAction();
-
+		print("Compleated");
 	}
 
 	/// <summary>
@@ -160,7 +164,6 @@ public struct HitLocation
 
 	public void Set( Vector3 loc, GameObject go )
 	{
-
 		location = loc;
 		obj = go;
 
