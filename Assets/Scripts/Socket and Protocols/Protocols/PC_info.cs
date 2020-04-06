@@ -44,7 +44,7 @@ namespace Protocol
 
 		public int[] client_ids;
 		public string[] client_nicknames;
-		public int[] client_player_id;
+		public int[] client_player_ids;
 
 	}
 

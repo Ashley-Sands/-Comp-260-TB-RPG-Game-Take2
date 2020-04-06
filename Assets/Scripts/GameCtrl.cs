@@ -8,6 +8,8 @@ using UnityEngine;
 public class GameCtrl : MonoBehaviour
 {
 
+    public event System.Action<Client[]> gameClientsSet;
+
     private static GameCtrl inst;
     public static GameCtrl Inst {
         get { return inst; }
@@ -19,12 +21,12 @@ public class GameCtrl : MonoBehaviour
 
     public Player playerData;
 
-    public Client[] clients;    // all the clients including the player.
+    public Client[] clientData;    // all the clients including the player.
     public int currentClientId = 0;
 
     public Client CurrentClient {
         get{
-            return clients.Length == 0 ? null : clients[ currentClientId ];
+            return clientData.Length == 0 ? null : clientData[ currentClientId ];
         }
     }
 
@@ -39,6 +41,7 @@ public class GameCtrl : MonoBehaviour
     {
         Protocol.ProtocolHandler.Inst.Bind( 'i', IdentityRequest );
         Protocol.ProtocolHandler.Inst.Bind( 'I', IdentityStatus );
+        Protocol.ProtocolHandler.Inst.Bind( 'G', UpdateGameClients );
     }
 
     private void IdentityRequest( Protocol.BaseProtocol prto )
@@ -74,10 +77,32 @@ public class GameCtrl : MonoBehaviour
 
     }
 
+    private void UpdateGameClients( Protocol.BaseProtocol proto )
+    {
+
+        // TODO: prevent game clients from being set again.
+
+        Protocol.GameClientList clientList = proto.AsType<Protocol.GameClientList>();
+        clientData = new Client[ clientList.client_ids.Length ];
+
+        for ( int i = 0; i < clientList.client_ids.Length; i++ )
+        {
+            if ( clientList.client_ids[ i ] == playerData.clientId )
+                playerData.playerId = clientList.client_player_ids[ i ];
+
+            clientData[ i ] = new Client( clientList.client_ids[ i ], clientList.client_nicknames[ i ], clientList.client_player_ids[ i ] );
+
+        }
+
+        gameClientsSet?.Invoke( clientData );
+
+    }
 
     private void OnDestroy ()
     {
         Protocol.ProtocolHandler.Inst.Unbind( 'i', IdentityRequest );
         Protocol.ProtocolHandler.Inst.Unbind( 'I', IdentityStatus );
+        Protocol.ProtocolHandler.Inst.Unbind( 'G', UpdateGameClients );
+
     }
 }

@@ -14,6 +14,13 @@ public class Client
 
     public int playerId;        // In Game
 
+    public Client( int _clientId, string _nickname, int _playerId )
+    {
+        clientId = _clientId;
+        nickname = _nickname;
+        playerId = _playerId;
+    }
+
 }
 
 /// <summary>
@@ -24,6 +31,14 @@ public class Player : Client
 {
 
     public string reg_key;
+
+    // we dont need the player id in the constructor as player is setup befor the game is set.
+    // it gets updated once the game starts :)
+    public Player( int _clientId, string _nickname, string _regKey ) :
+        base( _clientId, _nickname, 0)  // default player id must be 0 to prevent local testing errors
+    {
+        reg_key = _regKey;
+    }
 
     public bool compareClient( Client client )
     {

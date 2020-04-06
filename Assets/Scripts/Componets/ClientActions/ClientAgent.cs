@@ -51,7 +51,7 @@ public class ClientAgent : ClientAction
         agent.isStopped = false;
         agent.SetDestination( loc );
         complete = false;
-        print( "GOGOGOGO" );
+
     }
 
     public override void CancelAction ()
