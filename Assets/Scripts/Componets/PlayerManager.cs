@@ -137,7 +137,7 @@ public class PlayerManager : ClientManager
 			nextAction = actionQueue.Dequeue();
 			nextAction.player_id = playerId;
 
-			//ClientSocket.ActiveSocket.SendMsg( nextAction );
+			ClientSocket.ActiveSocket.SendMsg( nextAction );
 			ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
 			Debug.Log( "Sending action from playerMannager :D" );
 		}
