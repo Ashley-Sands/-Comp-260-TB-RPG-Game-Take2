@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SendSceneLoaded_OnAwake : MonoBehaviour
+public class SendSceneLoaded_OnStart : MonoBehaviour
 {
-	private void Awake ()
+	private void Start ()
 	{
 
 		Protocol.ClientStatus status = new Protocol.ClientStatus()
