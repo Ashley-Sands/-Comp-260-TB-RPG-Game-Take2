@@ -56,7 +56,8 @@ namespace Protocol
                 { 'l', new ProtocolEvent() },    // Lobby List
                 { 'O', new ProtocolEvent() },    // Lobby Info
                 { 'C', new ProtocolEvent() },    // Lobby Client List
-                { 'm', new ProtocolEvent() },    // Lobby Client List
+                { 'G', new ProtocolEvent() },    // Game Client List
+                { 'm', new ProtocolEvent() },    // message
 
                 // Game actions
                 // Game actions
@@ -164,6 +165,9 @@ namespace Protocol
                     break;
                 case 'C':
                     newProto = JsonUtility.FromJson<LobbyClientList>( json );
+                    break;
+                case 'G':
+                    newProto = JsonUtility.FromJson<GameClientList>( json );
                     break;
                 case 'O':
                     newProto = JsonUtility.FromJson<LobbyInfo>( json );

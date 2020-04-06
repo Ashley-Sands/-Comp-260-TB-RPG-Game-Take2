@@ -37,4 +37,15 @@ namespace Protocol
 
 	}
 
+	class GameClientList : BaseProtocol
+	{
+
+		public override char Identity => 'G';
+
+		public int[] client_ids;
+		public string[] client_nicknames;
+		public int[] client_player_id;
+
+	}
+
 }
