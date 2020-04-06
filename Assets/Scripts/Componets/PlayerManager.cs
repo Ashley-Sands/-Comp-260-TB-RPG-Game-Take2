@@ -11,7 +11,9 @@ public class PlayerManager : ClientManager
 
 	private int activeUiGroup = -1;		// < 0 is none active.
 	[SerializeField] private LayerMask layerMask;
-
+	[Tooltip("the amount of pixals from the left of the scene in witch raycast will be ignored.")]
+	[SerializeField] private int x_rayBlock = 150;
+	private int XRayBlock => (int)( x_rayBlock * (float)(Screen.height / 1080f) );
 	private HitLocation hitLocation;
 	public HitLocation HitLocation { get => hitLocation; }
 
@@ -38,9 +40,13 @@ public class PlayerManager : ClientManager
 		if ( Input.GetMouseButtonDown( 0 ) )
 		{
 
+			Vector2 mousePosition = Input.mousePosition;
+
+			if ( mousePosition.x < XRayBlock ) return;
+
 			// player input.
 			RaycastHit hit;
-			Ray ray = Camera.main.ScreenPointToRay( Input.mousePosition );
+			Ray ray = Camera.main.ScreenPointToRay( mousePosition );
 
 			if ( Physics.Raycast( ray, out hit, 300, layerMask ) )
 			{

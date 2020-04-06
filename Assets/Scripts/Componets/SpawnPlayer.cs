@@ -20,13 +20,17 @@ public class SpawnPlayer : MonoBehaviour
     private void SpwanPlayers( Client[] clients )
     {
 
+        
+
         for (int i = 0; i < clients.Length; i++ )
         {
             Client client = clients[ i ];
             GameObject spawnedClient;
+            print( "Helloo World :) :: " + client.playerId + " :: "+ spawnId );
 
-           if ( client.playerId == spawnId )
-           {
+            if ( client.playerId == spawnId )
+            {
+                print( " :: " );
                 // check if its the player or a client
                 if ( client.clientId == GameCtrl.Inst.playerData.clientId )
                 {
@@ -39,7 +43,7 @@ public class SpawnPlayer : MonoBehaviour
 
                 return;
 
-           }
+            }
 
         }
 
