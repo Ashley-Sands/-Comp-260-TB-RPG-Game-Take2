@@ -16,6 +16,7 @@ public class ReliceHome : MonoBehaviour
         if ( other.CompareTag( "Relic" ) )
         {
             ++currentRelices;
+            UpdateUi();
 
             if ( currentRelices == compleatRelices )
             {
@@ -30,12 +31,15 @@ public class ReliceHome : MonoBehaviour
         if ( other.CompareTag( "Relic" ) )
         {
             --currentRelices;
+            UpdateUi();
         }
     }
 
     private void UpdateUi()
     {
+
         if ( relicText != null )
-            relicText.text = currentRelices.ToString();
+            relicText.text = string.Format("{0} of {1}", currentRelices, compleatRelices);
+
     }
 }
