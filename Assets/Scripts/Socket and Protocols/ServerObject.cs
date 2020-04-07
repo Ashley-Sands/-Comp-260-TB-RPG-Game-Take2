@@ -5,6 +5,7 @@ using UnityEngine;
 public class ServerObject : MonoBehaviour
 {
 
+    private bool inUse = false;
     [SerializeField] private Protocol.ServerObject.ObjectType serverObjectType;
     private int serverObjectId = -1;
     private Vector3 lastPosition;
@@ -12,6 +13,17 @@ public class ServerObject : MonoBehaviour
     private void Start ()
     {
         Protocol.ProtocolHandler.Inst.Bind('#', UpdateServerObject);
+    }
+
+    public virtual void Use ( bool use )
+    {
+        inUse = use;
+
+        if ( !inUse )   // ie the object has been droped.
+        {
+            Send();
+        }
+
     }
 
     /// <summary>
