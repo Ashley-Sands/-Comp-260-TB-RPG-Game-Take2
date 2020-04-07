@@ -34,6 +34,7 @@ namespace Protocol
     public class ServerObject : BaseProtocol 
     {
         public enum ObjectType { Player = 0, Relic = 1 }
+        public enum ObjectAction { Defualt = 0, Add = 1, Destroy = 2 }
         public override char Identity => '#';
 
         public Vector3 Position {
@@ -50,15 +51,22 @@ namespace Protocol
             set{ type = (int)value; }
         }
 
+        public ObjectAction Action{
+            get { return (ObjectAction)action; }
+            set { action = (int)value; }
+        }
+
         public float x, y, z;
 
         public int type;
+        public int action;
         public int object_id = -1;
 
-        public ServerObject( Vector3 _position, ObjectType _type, int _objId )
+        public ServerObject( Vector3 _position, ObjectType _type, int _objId, ObjectAction _action = ObjectAction.Defualt )
         {
             Position = _position;
             Type = _type;
+            Action = _action;
             object_id = _objId;
         }
 

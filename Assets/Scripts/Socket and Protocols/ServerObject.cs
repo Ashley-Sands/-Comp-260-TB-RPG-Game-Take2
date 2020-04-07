@@ -27,7 +27,7 @@ public class ServerObject : MonoBehaviour
             return;
 
         // update the position of the object.
-        lastPosition = transform.position = obj.Position;
+        transform.position = lastPosition = obj.Position;
 
     }
 

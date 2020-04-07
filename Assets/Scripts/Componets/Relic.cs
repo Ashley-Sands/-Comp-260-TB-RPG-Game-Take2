@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Relic : MonoBehaviour
+public class Relic : ServerObject
 {
 
 
