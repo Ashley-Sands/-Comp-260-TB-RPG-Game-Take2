@@ -10,6 +10,11 @@ public class Ammo : MonoBehaviour
     [SerializeField] private int currentAmmo = 15;
     [SerializeField] private TextMeshProUGUI ammoText;
 
+    private void Start ()
+    {
+        UpdateUi();
+    }
+
     private void UpdateUi()
     {
         if ( ammoText != null )

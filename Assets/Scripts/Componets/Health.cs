@@ -13,6 +13,11 @@ public class Health : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI healthText;
 
+    private void Start ()
+    {
+        UpdateUi();
+    }
+
     void AddHealth( float healthToAdd)
     {
         currentHealth += healthToAdd;

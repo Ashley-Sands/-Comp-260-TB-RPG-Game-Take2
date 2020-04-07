@@ -11,6 +11,11 @@ public class ReliceHome : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI relicText;
 
+    private void Start ()
+    {
+        UpdateUi();
+    }
+
     private void OnTriggerEnter ( Collider other )
     {
         if ( other.CompareTag( "Relic" ) )
