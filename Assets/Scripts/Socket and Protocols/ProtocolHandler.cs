@@ -61,8 +61,8 @@ namespace Protocol
 
                 // Game actions
                 // Game actions
-                { 'M', new ProtocolEvent() }     // Move Player
-
+                { 'M', new ProtocolEvent() },     // Move Player
+                { '#', new ProtocolEvent() }
                 // Dont forget to add it to Convert json as well :)
             };
 
@@ -177,6 +177,9 @@ namespace Protocol
                     break;
                 case 'M':
                     newProto = JsonUtility.FromJson<MovePlayer>( json );
+                    break;
+                case '#':
+                    newProto = JsonUtility.FromJson<ServerObject>( json );
                     break;
                 default:    // Not found
                     Debug.LogErrorFormat( "Unable to handle json, Failed to identify protocol {0}", idenity );
