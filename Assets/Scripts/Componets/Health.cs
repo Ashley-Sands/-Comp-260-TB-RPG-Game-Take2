@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Health : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHalth = 100;
     [SerializeField] float currentHealth = 00;
 
+    [SerializeField] TextMeshProUGUI healthText;
+
     void AddHealth( float healthToAdd)
     {
         currentHealth += healthToAdd;
 
         ClampHealth();
+        UpdateUi();
 
     }
 
@@ -23,6 +27,8 @@ public class Health : MonoBehaviour
         currentHealth -= healthToRemove;
 
         ClampHealth();
+        UpdateUi();
+
     }
 
     void ClampHealth()
@@ -35,5 +41,11 @@ public class Health : MonoBehaviour
 
     }
 
+    private void UpdateUi()
+    {
+        if (healthText != null)
+            healthText.text = string.Format( "{0}/{1}", currentHealth, maxHalth );
+
+    }
 
 }
