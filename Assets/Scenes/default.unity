@@ -12438,9 +12438,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnId: 0
-  playerPrefab: {fileID: 3187718565328829309, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+  playerPrefab: {fileID: 3187718565328829306, guid: 0ee2e27fe967ab549b964f020ebeac3a,
     type: 3}
-  clientPrefab: {fileID: 2852695133282909722, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
+  clientPrefab: {fileID: 2852695133282909723, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
     type: 3}
 --- !u!43 &504279556
 Mesh:
@@ -12738,9 +12738,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnId: 1
-  playerPrefab: {fileID: 3187718565328829309, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+  playerPrefab: {fileID: 3187718565328829306, guid: 0ee2e27fe967ab549b964f020ebeac3a,
     type: 3}
-  clientPrefab: {fileID: 2852695133282909722, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
+  clientPrefab: {fileID: 2852695133282909723, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
     type: 3}
 --- !u!1 &624855976
 GameObject:
@@ -12982,9 +12982,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnId: 3
-  playerPrefab: {fileID: 3187718565328829309, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+  playerPrefab: {fileID: 3187718565328829306, guid: 0ee2e27fe967ab549b964f020ebeac3a,
     type: 3}
-  clientPrefab: {fileID: 2852695133282909722, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
+  clientPrefab: {fileID: 2852695133282909723, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
     type: 3}
 --- !u!1 &826170756
 GameObject:
@@ -20985,9 +20985,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnId: 2
-  playerPrefab: {fileID: 3187718565328829309, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+  playerPrefab: {fileID: 3187718565328829306, guid: 0ee2e27fe967ab549b964f020ebeac3a,
     type: 3}
-  clientPrefab: {fileID: 2852695133282909722, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
+  clientPrefab: {fileID: 2852695133282909723, guid: 67be08e50f9f17f4ba9d68ec23f09aa5,
     type: 3}
 --- !u!1 &1147268738
 GameObject:

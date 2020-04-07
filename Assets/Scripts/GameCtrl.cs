@@ -93,7 +93,7 @@ public class GameCtrl : MonoBehaviour
             clientData[ i ] = new Client( clientList.client_ids[ i ], clientList.client_nicknames[ i ], clientList.client_player_ids[ i ] );
 
         }
-
+        print( Inst.clientData.Length + " :: "+ clientData.Length );
         gameClientsSet?.Invoke( clientData );
 
     }
