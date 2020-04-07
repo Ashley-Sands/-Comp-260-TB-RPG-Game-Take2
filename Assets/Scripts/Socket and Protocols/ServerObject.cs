@@ -5,10 +5,23 @@ using UnityEngine;
 public class ServerObject : MonoBehaviour
 {
 
+    private delegate void SelectServerObject ( int objectId, ISelectServerObject selectedServerObjectInterface );
+    private static SelectServerObject selectServerObject;
+
     private bool inUse = false;
     [SerializeField] private Protocol.ServerObject.ObjectType serverObjectType;
     private int serverObjectId = -1;
     private Vector3 lastPosition;
+
+    public static void InvokeSelectObject( int objectId, ISelectServerObject selectedServerObjectInterface )
+    {
+        selectServerObject?.Invoke( objectId, selectedServerObjectInterface );
+    }
+
+    private void Awake ()
+    {
+        selectServerObject += SelectObject;
+    }
 
     private void Start ()
     {
@@ -24,6 +37,12 @@ public class ServerObject : MonoBehaviour
             Send();
         }
 
+    }
+
+    public virtual void SelectObject( int objectId, ISelectServerObject selectedServerObjectInterface )
+    {
+        if ( objectId == serverObjectId )
+            selectedServerObjectInterface.serverObject = this;
     }
 
     /// <summary>
@@ -59,6 +78,7 @@ public class ServerObject : MonoBehaviour
 
     private void OnDestroy ()
     {
+        selectServerObject -= SelectObject;
         Protocol.ProtocolHandler.Inst.Unbind('#', UpdateServerObject);
     }
 }
