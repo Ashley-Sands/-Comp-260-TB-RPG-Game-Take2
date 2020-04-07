@@ -20,8 +20,6 @@ public class SpawnPlayer : MonoBehaviour
     private void SpwanPlayers( Client[] clients )
     {
 
-        print( "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" );
-
         for (int i = 0; i < clients.Length; i++ )
         {
             Client client = clients[ i ];

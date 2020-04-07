@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2852695135156495796}
+  - {fileID: 2852695134291958307}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4067f6a59aa4cb4ba1e03cd6d773fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clientAgent: {fileID: 1005528604923415642}
+  clientAgent: {fileID: 4604559380998514760}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,8 +148,11 @@ GameObject:
   - component: {fileID: 2852695134291958334}
   - component: {fileID: 2852695134291958333}
   - component: {fileID: 2852695134291958332}
+  - component: {fileID: 7666090563201310811}
+  - component: {fileID: 4604559380998514760}
+  - component: {fileID: 3004753025715455525}
   m_Layer: 0
-  m_Name: Player Cylinder
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,12 +165,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2852695134291958306}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 4.08, y: 1.5, z: 6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2852695133527277496}
-  m_Father: {fileID: 2852695135156495796}
+  m_Father: {fileID: 2852695133282909716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2852695134291958334
@@ -229,49 +232,16 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!1 &2852695135156495803
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2852695135156495796}
-  - component: {fileID: 2852695135156495797}
-  - component: {fileID: 1005528604923415642}
-  m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2852695135156495796
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2852695135156495803}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 4.08, y: 1.5, z: 6.99}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2852695134291958307}
-  m_Father: {fileID: 2852695133282909716}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!195 &2852695135156495797
+--- !u!195 &7666090563201310811
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2852695135156495803}
+  m_GameObject: {fileID: 2852695134291958306}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.5000001
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -284,13 +254,13 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1005528604923415642
+--- !u!114 &4604559380998514760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2852695135156495803}
+  m_GameObject: {fileID: 2852695134291958306}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca11dd9e13b57e740abd97f6c7740547, type: 3}
@@ -300,3 +270,17 @@ MonoBehaviour:
   moveSpeed: 5
   complete: 0
   completeRadius: 0
+--- !u!114 &3004753025715455525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852695134291958306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3776ea7a99e91de4b95c92c97f739933, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHHalth: 100
+  currentHealth: 0
