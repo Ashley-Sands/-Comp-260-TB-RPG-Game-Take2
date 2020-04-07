@@ -1586,7 +1586,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2387,7 +2387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3776ea7a99e91de4b95c92c97f739933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHHalth: 100
+  maxHalth: 100
   currentHealth: 0
 --- !u!1 &3187718564731296211
 GameObject:
@@ -3450,11 +3450,11 @@ RectTransform:
   m_Father: {fileID: 3187718564463876565}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: -120}
-  m_SizeDelta: {x: 350, y: 75}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 51.19995, y: -44.13745}
+  m_SizeDelta: {x: 350, y: -1005}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &3187718565263983179
 CanvasRenderer:
   m_ObjectHideFlags: 0
