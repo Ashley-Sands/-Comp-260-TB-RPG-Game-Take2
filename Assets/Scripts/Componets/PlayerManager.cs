@@ -20,6 +20,8 @@ public class PlayerManager : ClientManager
 	private Queue<Protocol.BaseGameAction> actionQueue = new Queue<Protocol.BaseGameAction>();
 	private Protocol.BaseGameAction nextAction;
 
+	private ServerObject selectedServerObject;
+
 	private void Awake ()
 	{
 		
@@ -51,6 +53,8 @@ public class PlayerManager : ClientManager
 			if ( Physics.Raycast( ray, out hit, 300, layerMask ) )
 			{
 				if ( hit.collider.gameObject.CompareTag( "RayBlocker" ) ) return;
+
+				selectedServerObject = hit.collider.GetComponent<ServerObject>();
 
 				hitLocation.Set( hit.point, hit.collider.gameObject );
 
