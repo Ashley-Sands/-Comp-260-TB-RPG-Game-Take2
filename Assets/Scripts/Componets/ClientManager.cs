@@ -14,18 +14,14 @@ public class ClientManager : MonoBehaviour
 
 	public Dictionary<char, Protocol.protocol_event> bindActions;
 
-	// ??
-	// carry slot
-	// attack slot
-	// 
-
 	private void Start ()
 	{
 
 		bindActions = new Dictionary<char, Protocol.protocol_event>()
 		{
 			{ 'M', MovePlayer },
-			{ 'P', CollectItem }
+			{ 'P', CollectItem },
+			{ 'p', DropItem }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -62,9 +58,9 @@ public class ClientManager : MonoBehaviour
 
 	private void DropItem ( Protocol.BaseProtocol proto )
 	{
-		//Protocol.CollectItem collectItem = proto.AsType<Protocol.CollectItem>();
+		Protocol.DropItem dropItem = proto.AsType<Protocol.DropItem>();
 
-		//if ( collectItem.player_id == playerId )
+		if ( dropItem.player_id == playerId )
 		{
 			itemHold.DropItem ();
 		}

@@ -39,6 +39,11 @@ namespace Protocol
         
     }
 
+    public class DropItem : BaseGameAction
+    {
+        public override char Identity => 'p';
+    }
+
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
     public class ServerObject : BaseProtocol 
     {

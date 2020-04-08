@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientManager: {fileID: 3187718565328829306}
-  holdOffset: {x: 0, y: 0, z: 0}
+  holdOffset: {x: 0.2, y: 0.5, z: 1.2}
 --- !u!1 &3187718564731296211
 GameObject:
   m_ObjectHideFlags: 0
