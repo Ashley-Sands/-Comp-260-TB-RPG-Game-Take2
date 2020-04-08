@@ -268,7 +268,7 @@ public class ClientSocket : MonoBehaviour
         print( ConnStatus + " :: "+ outboundQueue.Count );
         while ( ConnStatus == ConnectionStatus.Connected && outboundQueue.Count > 0)
         {
-            print( "Helooo fadsfadsfasfasf" );
+
             Protocol.BaseProtocol message = outboundQueue.Dequeue() as Protocol.BaseProtocol;
             string data = message.GetJson( out int messageLength );
 

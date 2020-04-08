@@ -32,7 +32,7 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
 
         ServerObject.InvokeSelectObject( object_id, this );
 
-        currentHoldObject?.Use( true );     // use the object if we found one.
+        currentHoldObject?.Use( true );     // use the new object if we found one.
 
         clientManager.CompleatAction();
 
@@ -41,6 +41,11 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
     public void DropItem()
     {
         currentHoldObject?.Use( false );    // un use the object if we have one
+
+        Vector3 offset = new Vector3( 0, holdOffset.y, 0 );
+
+        if ( currentHoldObject != null)
+            currentHoldObject.transform.position = currentHoldObject.transform.position - offset;
 
         currentHoldObject = null;
 

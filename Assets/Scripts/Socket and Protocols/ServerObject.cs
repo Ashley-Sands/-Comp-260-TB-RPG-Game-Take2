@@ -61,6 +61,7 @@ public class ServerObject : MonoBehaviour
         // update the position of the object.
         transform.position = lastPosition = obj.Position;
 
+
     }
 
     /// <summary>
