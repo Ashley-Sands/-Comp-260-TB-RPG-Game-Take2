@@ -21,6 +21,7 @@ public class PlayerManager : ClientManager
 	private Protocol.BaseGameAction nextAction;
 
 	private ServerObject selectedServerObject;
+	public ServerObject SelectedServerObject => selectedServerObject;
 
 	private void Awake ()
 	{

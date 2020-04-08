@@ -8,6 +8,7 @@ public class ClientManager : MonoBehaviour
 	protected int playerId = -1;  // < 0 is unset 
 
 	[SerializeField] private ClientAgent clientAgent;
+	[SerializeField] private ItemHold itemHold;
 
 	protected ClientAction currentAction;
 
@@ -23,7 +24,8 @@ public class ClientManager : MonoBehaviour
 
 		bindActions = new Dictionary<char, Protocol.protocol_event>()
 		{
-			{ 'M', MovePlayer }
+			{ 'M', MovePlayer },
+			{ 'P', CollectItem }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -43,6 +45,28 @@ public class ClientManager : MonoBehaviour
 
 			clientAgent.MoveAgent( movePlayer.Position );
 			currentAction = clientAgent;
+		}
+
+	}
+
+	private void CollectItem ( Protocol.BaseProtocol proto )
+	{
+		Protocol.CollectItem collectItem = proto.AsType<Protocol.CollectItem>();
+
+		if ( collectItem.player_id == playerId )
+		{
+			itemHold.CollectItem( collectItem.object_id );
+		}
+
+	}
+
+	private void DropItem ( Protocol.BaseProtocol proto )
+	{
+		//Protocol.CollectItem collectItem = proto.AsType<Protocol.CollectItem>();
+
+		//if ( collectItem.player_id == playerId )
+		{
+			itemHold.DropItem ();
 		}
 
 	}

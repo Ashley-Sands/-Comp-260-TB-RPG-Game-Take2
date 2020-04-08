@@ -10,7 +10,8 @@ public class ServerObject : MonoBehaviour
 
     private bool inUse = false;
     [SerializeField] private Protocol.ServerObject.ObjectType serverObjectType;
-    private int serverObjectId = -1;
+
+    public int serverObjectId;
     private Vector3 lastPosition;
 
     public static void InvokeSelectObject( int objectId, ISelectServerObject selectedServerObjectInterface )
@@ -42,7 +43,7 @@ public class ServerObject : MonoBehaviour
     public virtual void SelectObject( int objectId, ISelectServerObject selectedServerObjectInterface )
     {
         if ( objectId == serverObjectId )
-            selectedServerObjectInterface.serverObject = this;
+            selectedServerObjectInterface.SelectedObject = this;
     }
 
     /// <summary>

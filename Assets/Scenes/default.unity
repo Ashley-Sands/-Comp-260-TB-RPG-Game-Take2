@@ -12646,6 +12646,7 @@ GameObject:
   - component: {fileID: 565843751}
   - component: {fileID: 565843750}
   - component: {fileID: 565843749}
+  - component: {fileID: 565843753}
   m_Layer: 0
   m_Name: Gard Object (3)
   m_TagString: Relic
@@ -12726,6 +12727,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &565843753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565843748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cdff96d87728b4f85f28e0c39ca1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverObjectType: 0
 --- !u!1 &569950907
 GameObject:
   m_ObjectHideFlags: 0
@@ -12786,6 +12800,7 @@ GameObject:
   - component: {fileID: 624855979}
   - component: {fileID: 624855978}
   - component: {fileID: 624855977}
+  - component: {fileID: 624855981}
   m_Layer: 0
   m_Name: Gard Object (2)
   m_TagString: Relic
@@ -12866,6 +12881,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &624855981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624855976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cdff96d87728b4f85f28e0c39ca1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverObjectType: 0
 --- !u!1 &697218747
 GameObject:
   m_ObjectHideFlags: 0
@@ -15821,6 +15849,7 @@ GameObject:
   - component: {fileID: 917436987}
   - component: {fileID: 917436986}
   - component: {fileID: 917436985}
+  - component: {fileID: 917436988}
   m_Layer: 0
   m_Name: Gard Object (0)
   m_TagString: Relic
@@ -15901,6 +15930,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917436983}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &917436988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917436983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cdff96d87728b4f85f28e0c39ca1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverObjectType: 0
 --- !u!1 &927569076
 GameObject:
   m_ObjectHideFlags: 0
@@ -20611,6 +20653,7 @@ GameObject:
   - component: {fileID: 944685118}
   - component: {fileID: 944685117}
   - component: {fileID: 944685116}
+  - component: {fileID: 944685120}
   m_Layer: 0
   m_Name: Gard Object (1)
   m_TagString: Relic
@@ -20691,6 +20734,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &944685120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944685115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87cdff96d87728b4f85f28e0c39ca1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverObjectType: 0
 --- !u!1 &971829536
 GameObject:
   m_ObjectHideFlags: 0
@@ -36251,6 +36307,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3187718563916271173}
+--- !u!114 &3187718565522927301 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2487951954833805716, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3187718565596563966}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3187718565522927298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366c08f4ffc410641bddb1b233493044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3187718565596563966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36317,6 +36385,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3187718565522927301}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CollectObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564265087240, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ee2e27fe967ab549b964f020ebeac3a, type: 3}

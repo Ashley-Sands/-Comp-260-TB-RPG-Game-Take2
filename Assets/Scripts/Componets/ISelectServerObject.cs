@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ISelectServerObject
 {
-    ServerObject serverObject { get; set; }
+    ServerObject SelectedObject { get; set; }
 
 }
