@@ -34,9 +34,9 @@ public class UIGAct_collectItem : UIGAct_base
     public void DropObject()
     {
 
-        Protocol.DropItem dropObject = new Protocol.DropItem();
+        Protocol.GameAction gameAct = new Protocol.GameAction( Protocol.GameAction.Actions.DropItem );
 
-        playerManager.QueueAction( dropObject );
+        playerManager.QueueAction( gameAct );
 
     }
 

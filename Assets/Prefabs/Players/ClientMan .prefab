@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientAgent: {fileID: 4604559380998514760}
   itemHold: {fileID: 2677022653788040954}
+  projectileLauncher: {fileID: 5144766527252469503}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,8 +58,7 @@ GameObject:
   - component: {fileID: 2852695133527277496}
   - component: {fileID: 2852695133527277499}
   - component: {fileID: 2852695133527277498}
-  - component: {fileID: 2852695133527277497}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,19 +124,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2852695133527277497
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2852695133527277503}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2852695134291958306
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +142,7 @@ GameObject:
   - component: {fileID: 2677022653788040954}
   - component: {fileID: 5144766527252469503}
   - component: {fileID: 394675081842736764}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -315,7 +302,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d938f2ccf7681164cbd5affbdd30767f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  clientManager: {fileID: 2852695133282909723}
+  projectilePrefab: {fileID: 8024595666335156451, guid: 9985960ebd03f0f46a7877b7d21b6783,
+    type: 3}
   currentAmmo: 15
   ammoText: {fileID: 0}
 --- !u!114 &394675081842736764

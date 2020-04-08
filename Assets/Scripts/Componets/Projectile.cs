@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour
 		if ( explosionPrefab == null )
 			return;
 
+		print( collision.collider.name );
+
 		// exploade.
 		Vector3 hitPoint = collision.contacts[ 0 ].point;
 

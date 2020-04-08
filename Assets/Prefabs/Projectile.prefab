@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 935809960853234530}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 2233045610892588040}
   - component: {fileID: 8880759617401559599}
   - component: {fileID: 3362757622475920596}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 3952005452537919981}
   - component: {fileID: 2087422504573882297}
   - component: {fileID: 2712343341295831597}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 4397101289328854332}
   - component: {fileID: 3147137338788871934}
   - component: {fileID: 5897443568252629134}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Projectile smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +4908,7 @@ GameObject:
   - component: {fileID: 2983420093125491240}
   - component: {fileID: 6763926968845572398}
   - component: {fileID: 6352360127783627894}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4985,7 +4985,7 @@ GameObject:
   - component: {fileID: 8566567122817145759}
   - component: {fileID: 4054879786965560316}
   - component: {fileID: 6774859481277351985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5062,7 @@ GameObject:
   - component: {fileID: 2476336704370357958}
   - component: {fileID: 5199263433680729264}
   - component: {fileID: 368485644347862622}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5142,7 +5142,7 @@ GameObject:
   - component: {fileID: 1233711310473707620}
   - component: {fileID: 5025717524328224286}
   - component: {fileID: 2387483036222014929}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5220,7 +5220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c38d02e3e2784f4586d77e622775708, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startForce: 10
+  startForce: 1000
 --- !u!114 &2387483036222014929
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class ClientManager : MonoBehaviour
 
 	[SerializeField] private ClientAgent clientAgent;
 	[SerializeField] private ItemHold itemHold;
+	[SerializeField] private ProjectileLauncher projectileLauncher;
 
 	protected ClientAction currentAction;
 
@@ -21,7 +22,7 @@ public class ClientManager : MonoBehaviour
 		{
 			{ 'M', MovePlayer },
 			{ 'P', CollectItem },
-			{ 'p', DropItem }
+			{ 'A', Action }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -56,16 +57,24 @@ public class ClientManager : MonoBehaviour
 
 	}
 
-	private void DropItem ( Protocol.BaseProtocol proto )
+	private void Action( Protocol.BaseProtocol proto )
 	{
-		Protocol.DropItem dropItem = proto.AsType<Protocol.DropItem>();
+		Protocol.GameAction gameAct = proto.AsType<Protocol.GameAction>();
 
-		if ( dropItem.player_id == playerId )
+		if ( gameAct.player_id != playerId ) return;
+
+		switch( gameAct.Action )
 		{
-			itemHold.DropItem ();
+			case Protocol.GameAction.Actions.DropItem:
+				itemHold.DropItem();
+				break;
+			case Protocol.GameAction.Actions.LaunchProjectile:
+				projectileLauncher.LaunchProjectile();
+				break;
 		}
 
 	}
+
 
 	public virtual void CompleatAction()
 	{

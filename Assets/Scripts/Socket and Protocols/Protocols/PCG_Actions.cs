@@ -39,9 +39,23 @@ namespace Protocol
         
     }
 
-    public class DropItem : BaseGameAction
+    public class GameAction : BaseGameAction
     {
-        public override char Identity => 'p';
+        public enum Actions { DropItem = 0, LaunchProjectile = 1}
+        public override char Identity => 'A';
+
+        public Actions Action {
+            get => (Actions)action;
+            set => action = (int)value;
+        }
+
+        public int action;
+
+        public GameAction( Actions act )
+        {
+            Action = act;
+        }
+
     }
 
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
