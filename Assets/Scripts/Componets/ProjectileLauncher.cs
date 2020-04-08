@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Ammo : MonoBehaviour
+public class ProjectileLauncher : MonoBehaviour
 {
 
     [SerializeField] private GameObject projectilePrefab;

@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
 
 		// Tell the server iv exploded.
 		// TODO: ^^
+		// or should the explosion tell the server :?
 
 	}
 
