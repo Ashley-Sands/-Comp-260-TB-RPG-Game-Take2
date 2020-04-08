@@ -62,6 +62,8 @@ namespace Protocol
                 // Game actions
                 // Game actions
                 { 'M', new ProtocolEvent() },     // Move Player
+                { 'P', new ProtocolEvent() },     // Collect Item
+
                 { '#', new ProtocolEvent() }
                 // Dont forget to add it to Convert json as well :)
             };
@@ -177,6 +179,9 @@ namespace Protocol
                     break;
                 case 'M':
                     newProto = JsonUtility.FromJson<MovePlayer>( json );
+                    break;
+                case 'P':
+                    newProto = JsonUtility.FromJson<CollectItem>( json );
                     break;
                 case '#':
                     newProto = JsonUtility.FromJson<ServerObject>( json );

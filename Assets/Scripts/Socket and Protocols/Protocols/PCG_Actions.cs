@@ -30,6 +30,15 @@ namespace Protocol
 
     }
 
+    public class CollectItem : BaseGameAction
+    {
+
+        public override char Identity => 'P';
+
+        public int object_id;
+        
+    }
+
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
     public class ServerObject : BaseProtocol 
     {
