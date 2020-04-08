@@ -40,13 +40,13 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
 
     public void DropItem()
     {
-        currentHoldObject?.Use( false );    // un use the object if we have one
 
         Vector3 offset = new Vector3( 0, holdOffset.y, 0 );
 
         if ( currentHoldObject != null)
             currentHoldObject.transform.position = currentHoldObject.transform.position - offset;
 
+        currentHoldObject?.Use( false );    // un use the object if we have one
         currentHoldObject = null;
 
         clientManager.CompleatAction();
