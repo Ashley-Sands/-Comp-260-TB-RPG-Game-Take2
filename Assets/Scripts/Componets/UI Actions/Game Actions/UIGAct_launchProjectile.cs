@@ -13,7 +13,7 @@ public class UIGAct_launchProjectile : UIGAct_base
         // rotate to look at the object to attack.
         Protocol.LookAtPosition lookAtPos = new Protocol.LookAtPosition()
         {
-            Position = playerManager.SelectedObject.position
+            Position = playerManager.pressedMarker.position // SelectedObject.position
         };
 
         playerManager.QueueAction( lookAtPos );

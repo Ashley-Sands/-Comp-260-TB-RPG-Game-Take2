@@ -7,7 +7,7 @@ public class PlayerManager : ClientManager
 {
 
 	[SerializeField] private UiActionGroup[] uiActions;
-	[SerializeField] private Transform pressedMarker;
+	public Transform pressedMarker;
 
 	private int activeUiGroup = -1;		// < 0 is none active.
 	[SerializeField] private LayerMask layerMask;
