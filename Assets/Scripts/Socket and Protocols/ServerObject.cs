@@ -71,7 +71,7 @@ public class ServerObject : MonoBehaviour
     {
         if ( transform.position == lastPosition ) return;
 
-        Protocol.ServerObject obj = new Protocol.ServerObject( transform.position, serverObjectType, serverObjectId );
+        Protocol.ServerObject obj = new Protocol.ServerObject( transform.position, transform.eulerAngles, serverObjectType, serverObjectId );
         obj.Send();
 
         lastPosition = transform.position;

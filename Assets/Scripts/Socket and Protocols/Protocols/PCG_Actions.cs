@@ -121,6 +121,15 @@ namespace Protocol
             }
         }
 
+        public Vector3 Rotation {
+            get => new Vector3( r_x, r_y, r_z );
+            set {
+                r_x = value.x;
+                r_y = value.y;
+                r_z = value.z;
+            }
+        }
+
         public ObjectType Type{
             get{ return (ObjectType)type; }
             set{ type = (int)value; }
@@ -132,14 +141,16 @@ namespace Protocol
         }
 
         public float x, y, z;
+        public float r_x, r_y, r_z;
 
         public int type;
         public int action;
         public int object_id = -1;
 
-        public ServerObject( Vector3 _position, ObjectType _type, int _objId, ObjectAction _action = ObjectAction.Defualt )
+        public ServerObject( Vector3 _position, Vector3 _rotation, ObjectType _type, int _objId, ObjectAction _action = ObjectAction.Defualt )
         {
             Position = _position;
+            Rotation = _rotation;
             Type = _type;
             Action = _action;
             object_id = _objId;
