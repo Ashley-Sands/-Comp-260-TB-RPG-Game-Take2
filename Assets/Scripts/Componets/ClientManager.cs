@@ -99,6 +99,8 @@ public class ClientManager : MonoBehaviour
 
 		Protocol.LookAtPosition lookAtPos = protocol.AsType<Protocol.LookAtPosition>();
 
+		if ( lookAtPos.player_id != playerId ) return;
+
 		lookAtPosition.LookAtPosition( lookAtPos.Position );
 
 	}
