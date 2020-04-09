@@ -84,7 +84,10 @@ public class ClientManager : MonoBehaviour
 
 		if ( damage.player_id != playerId ) return;
 
-		health.RemoveHealth( damage.damage_amount );
+		if ( damage.kill )
+			health.Kill();
+		else    // let's do some damage boys....
+			health.RemoveHealth( damage.damage );
 
 	}
 

@@ -36,14 +36,24 @@ public class Health : MonoBehaviour
 
     }
 
+    public void Kill( )
+    {
+        currentHealth = -1;
+        HealthDepleated?.Invoke();
+    }
+
     void ClampHealth()
     {
 
         if ( currentHealth > maxHalth )
+        {
             currentHealth = maxHalth;
-        else if ( currentHealth < 0 )
-            HealthDepleated?.Invoke();
-
+        }
+        else if ( currentHealth <= 0 )
+        {
+            Debug.Log( "Hmmm, it appears you are dead (out of sync with the server). Have you been fiddling? If so call 01 21 do 1. " );
+            currentHealth = 1;
+        }
     }
 
     private void UpdateUi()

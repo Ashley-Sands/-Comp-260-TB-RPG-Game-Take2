@@ -64,8 +64,9 @@ namespace Protocol
                 { 'M', new ProtocolEvent() },     // Move Player
                 { 'A', new ProtocolEvent() },     // Game Action
                 { 'P', new ProtocolEvent() },     // Collect Item
+                { 'D', new ProtocolEvent() },     // Apply Damage
 
-                { '#', new ProtocolEvent() }
+                { '#', new ProtocolEvent() }      // Server Object
                 // Dont forget to add it to Convert json as well :)
             };
 
@@ -186,6 +187,9 @@ namespace Protocol
                     break;
                 case 'P':
                     newProto = JsonUtility.FromJson<CollectItem>( json );
+                    break;
+                case 'D':
+                    newProto = JsonUtility.FromJson<ApplyDamage>( json );
                     break;
                 case '#':
                     newProto = JsonUtility.FromJson<ServerObject>( json );
