@@ -125,7 +125,39 @@ namespace Protocol
             object_id = _objId;
         }
 
-
-
     }
+    
+    /// <summary>
+    /// this is a bit of a work around to be able to queue a server object in the player manager.
+    /// 
+    /// </summary>
+    public class QueueServerObject : BaseGameAction
+    {
+        public override char Identity => serverObject.Identity;
+
+        public ServerObject serverObject;
+
+        public QueueServerObject ( Vector3 _position, ServerObject.ObjectType _type, int _objId, 
+                                   ServerObject.ObjectAction _action = ServerObject.ObjectAction.Defualt )
+        {
+            serverObject = new ServerObject( _position, _type, _objId, _action );
+        }
+
+        public override string GetJson ( out int jsonLength )
+        {
+            return serverObject.GetJson( out jsonLength );
+        }
+
+        public override int GetJsonLength ()
+        {
+            return serverObject.GetJsonLength();
+        }
+
+        public override void Send ()
+        {
+            serverObject.Send();
+        }
+        
+    }
+
 }

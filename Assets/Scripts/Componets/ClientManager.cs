@@ -16,7 +16,7 @@ public class ClientManager : MonoBehaviour
 
 	public Dictionary<char, Protocol.protocol_event> bindActions;
 
-	private void Start ()
+	protected virtual void Start ()
 	{
 
 		bindActions = new Dictionary<char, Protocol.protocol_event>()
@@ -39,9 +39,11 @@ public class ClientManager : MonoBehaviour
 	{
 		Protocol.MovePlayer movePlayer = proto.AsType<Protocol.MovePlayer>();
 
+		print( "Move" + movePlayer.player_id + "==" + playerId + " :: "+ transform.name );
+
 		if ( movePlayer.player_id == playerId )
 		{
-
+			print( "CUNT CUNT CUNT" );
 			clientAgent.MoveAgent( movePlayer.Position );
 			currentAction = clientAgent;
 		}

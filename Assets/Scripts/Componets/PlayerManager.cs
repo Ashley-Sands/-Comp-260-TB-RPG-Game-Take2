@@ -34,6 +34,14 @@ public class PlayerManager : ClientManager
 
 	}
 
+	protected override void Start ()
+	{
+		base.Start();
+		// first things first update our position on the server.
+		Protocol.ServerObject serverObj = new Protocol.ServerObject( transform.position, Protocol.ServerObject.ObjectType.Player, GameCtrl.Inst.playerData.playerId );
+		serverObj.Send();
+	}
+
 	private void Update ()
 	{
 
@@ -114,6 +122,8 @@ public class PlayerManager : ClientManager
 		base.CompleatAction();
 		nextAction = null;
 
+
+
 		NextAction();
 		print("Compleated");
 	}
@@ -124,6 +134,7 @@ public class PlayerManager : ClientManager
 	/// <param name="gameAction"></param>
 	public void QueueAction( Protocol.BaseGameAction gameAction )
 	{
+		print( "Action Queued" );
 		actionQueue.Enqueue( gameAction );
 
 		if ( nextAction == null )

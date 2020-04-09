@@ -13,5 +13,10 @@ public class UIGAct_movePlayer : UIGAct_base
 
         playerManager.QueueAction( movePlayer );
 
+        // up date the position on the server.
+        Protocol.QueueServerObject serverObj = new Protocol.QueueServerObject( transform.position, Protocol.ServerObject.ObjectType.Player, GameCtrl.Inst.playerData.playerId );
+        playerManager.QueueAction( serverObj );
+
     }
+
 }

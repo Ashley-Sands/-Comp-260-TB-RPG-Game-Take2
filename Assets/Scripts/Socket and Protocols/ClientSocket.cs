@@ -127,8 +127,7 @@ public class ClientSocket : MonoBehaviour
         {
             Protocol.BaseProtocol proto = inboundQueue.Dequeue() as Protocol.BaseProtocol;
             Protocol.ProtocolHandler.Inst.InvokeProtocol(proto);
-            print( "Local message dequeued :: id: "+ proto.Identity );
-
+            print( "Recived inbound :: "+ proto.Identity );
         }
 
     }
@@ -259,6 +258,8 @@ public class ClientSocket : MonoBehaviour
             sendThread = new Thread( SendThread );
             sendThread.Start();
         }
+
+        print( "outbound message cued" );
 
 
     }

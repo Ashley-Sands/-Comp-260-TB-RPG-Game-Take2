@@ -32,7 +32,7 @@ namespace Protocol
         /// </summary>
         /// <param name="jsonLength">OUT the length of the message</param>
         /// <returns>this class as json</returns>
-        public string GetJson ( out int jsonLength )
+        public virtual string GetJson ( out int jsonLength )
         {
             string jsonStr = JsonUtility.ToJson( this );
             chached_jsonLength = jsonLength = jsonStr.Length;
@@ -44,12 +44,12 @@ namespace Protocol
         /// Gets the chached message length from the last time GetMessage was called
         /// </summary>
         /// <returns>chached message length</returns>
-        public int GetJsonLength ()
+        public virtual int GetJsonLength ()
         {
             return chached_jsonLength;
         }
 
-        public void Send()
+        public virtual void Send()
         {
             ClientSocket.ActiveSocket.SendMsg( this );
         }
