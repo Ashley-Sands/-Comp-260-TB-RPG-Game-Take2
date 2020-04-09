@@ -163,6 +163,11 @@ namespace Protocol
             serverObject = new ServerObject( _position, _type, _objId, _action );
         }
 
+        public override T AsType<T> ()
+        {
+            return serverObject.AsType<T>();
+        }
+
         public override string GetJson ( out int jsonLength )
         {
             return serverObject.GetJson( out jsonLength );

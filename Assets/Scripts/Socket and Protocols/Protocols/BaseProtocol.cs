@@ -13,7 +13,7 @@ namespace Protocol
 
         private int chached_jsonLength = 0;
 
-        public T AsType<T>() where T : BaseProtocol
+        public virtual T AsType<T>() where T : BaseProtocol
         {
             if ( this is T )
             {
@@ -21,7 +21,7 @@ namespace Protocol
             }
             else
             {
-                Debug.LogErrorFormat( "Unable to get {0}, as tpye T ({1})", GetType(), typeof( T ) );
+                Debug.LogErrorFormat( "Unable to get {0}, as type T ({1})", GetType(), typeof( T ) );
                 return null;
             }
                         
