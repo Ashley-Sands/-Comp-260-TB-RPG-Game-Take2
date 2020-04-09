@@ -48,6 +48,7 @@ MonoBehaviour:
   itemHold: {fileID: 2677022653788040954}
   projectileLauncher: {fileID: 5144766527252469503}
   health: {fileID: 3004753025715455525}
+  lookAtPosition: {fileID: 5440393967377784880}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +140,7 @@ GameObject:
   - component: {fileID: 2852695134291958332}
   - component: {fileID: 7666090563201310811}
   - component: {fileID: 4604559380998514760}
+  - component: {fileID: 5440393967377784880}
   - component: {fileID: 3004753025715455525}
   - component: {fileID: 2677022653788040954}
   - component: {fileID: 5144766527252469503}
@@ -262,6 +264,21 @@ MonoBehaviour:
   moveSpeed: 5
   complete: 0
   completeRadius: 0
+--- !u!114 &5440393967377784880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852695134291958306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7b1da4df48c1a4dab10df25e0777f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 2852695133282909723}
+  rotateSpeed: 45
+  compleatRange: 5
 --- !u!114 &3004753025715455525
 MonoBehaviour:
   m_ObjectHideFlags: 0
