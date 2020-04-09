@@ -11,6 +11,7 @@ public class ClientManager : MonoBehaviour
 	[SerializeField] private ItemHold itemHold;
 	[SerializeField] private ProjectileLauncher projectileLauncher;
 	[SerializeField] private Health health;
+	[SerializeField] private Lookat_Position lookAtPosition;
 
 	protected ClientAction currentAction;
 
@@ -24,7 +25,8 @@ public class ClientManager : MonoBehaviour
 			{ 'M', MovePlayer },
 			{ 'P', CollectItem },
 			{ 'A', Action },
-			{ 'D', TakeDamage }
+			{ 'D', TakeDamage },
+			{ 'R', LookAt }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -43,7 +45,6 @@ public class ClientManager : MonoBehaviour
 
 		if ( movePlayer.player_id == playerId )
 		{
-			print( "CUNT CUNT CUNT" );
 			clientAgent.MoveAgent( movePlayer.Position );
 			currentAction = clientAgent;
 		}
@@ -90,6 +91,15 @@ public class ClientManager : MonoBehaviour
 			health.Kill();
 		else    // let's do some damage boys....
 			health.RemoveHealth( damage.damage );
+
+	}
+
+	public void LookAt ( Protocol.BaseProtocol protocol )
+	{
+
+		Protocol.LookAtPosition lookAtPos = protocol.AsType<Protocol.LookAtPosition>();
+
+		lookAtPosition.LookAtPosition( lookAtPos.Position );
 
 	}
 

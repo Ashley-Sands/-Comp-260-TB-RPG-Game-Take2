@@ -5,11 +5,20 @@ using UnityEngine;
 public class UIGAct_launchProjectile : UIGAct_base
 {
     
+
+
     public void LaunchProjectile()
     {
 
-        // TODO: rotation towards the client we ant to fire at :D
+        // rotate to look at the object to attack.
+        Protocol.LookAtPosition lookAtPos = new Protocol.LookAtPosition()
+        {
+            Position = playerManager.SelectedObject.position
+        };
 
+        playerManager.QueueAction( lookAtPos );
+
+        // attack
         Protocol.GameAction gameAct = new Protocol.GameAction( Protocol.GameAction.Actions.LaunchProjectile );
 
         playerManager.QueueAction( gameAct );

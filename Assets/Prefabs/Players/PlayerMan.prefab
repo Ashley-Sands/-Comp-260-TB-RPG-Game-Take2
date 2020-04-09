@@ -2394,6 +2394,7 @@ GameObject:
   - component: {fileID: 3187718564688640280}
   - component: {fileID: 2745402277582850332}
   - component: {fileID: 7571302951379966632}
+  - component: {fileID: 3479780368160898372}
   - component: {fileID: 1709199679064575046}
   - component: {fileID: 6748221255628624615}
   - component: {fileID: 5432778722240773897}
@@ -2519,6 +2520,21 @@ MonoBehaviour:
   moveSpeed: 5
   complete: 0
   completeRadius: 0.25
+--- !u!114 &3479780368160898372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3187718564688640285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7b1da4df48c1a4dab10df25e0777f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerManager: {fileID: 3187718565328829306}
+  rotateSpeed: 45
+  compleatRange: 5
 --- !u!114 &1709199679064575046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4048,6 +4064,7 @@ MonoBehaviour:
   itemHold: {fileID: 391020814938527501}
   projectileLauncher: {fileID: 6748221255628624615}
   health: {fileID: 1709199679064575046}
+  lookAtPosition: {fileID: 3479780368160898372}
   uiActions:
   - tag: Player
     uiHold: {fileID: 3187718565448662150}
