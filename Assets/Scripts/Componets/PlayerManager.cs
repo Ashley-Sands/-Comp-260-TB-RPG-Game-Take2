@@ -139,7 +139,7 @@ public class PlayerManager : ClientManager
 	/// <param name="gameAction"></param>
 	public void QueueAction( Protocol.BaseGameAction gameAction )
 	{
-		print( "Action Queued" );
+		print( "Action Queued (current: "+ (nextAction != null) +" :: "+ nextAction?.GetType().ToString() +")" );
 		actionQueue.Enqueue( gameAction );
 
 		if ( nextAction == null )
@@ -161,6 +161,10 @@ public class PlayerManager : ClientManager
 			ClientSocket.ActiveSocket.SendMsg( nextAction );
 			ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
 			Debug.Log( "Sending action from playerMannager :D" );
+
+			// if its a que server object we can move streat onto the next action
+			if ( nextAction is Protocol.QueueServerObject )
+				CompleatAction();
 		}
 
 
