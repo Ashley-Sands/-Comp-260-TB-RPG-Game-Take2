@@ -10,6 +10,7 @@ public class ClientManager : MonoBehaviour
 	[SerializeField] private ClientAgent clientAgent;
 	[SerializeField] private ItemHold itemHold;
 	[SerializeField] private ProjectileLauncher projectileLauncher;
+	[SerializeField] private Health health;
 
 	protected ClientAction currentAction;
 
@@ -22,7 +23,8 @@ public class ClientManager : MonoBehaviour
 		{
 			{ 'M', MovePlayer },
 			{ 'P', CollectItem },
-			{ 'A', Action }
+			{ 'A', Action },
+			{ 'D', TakeDamage }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -75,6 +77,16 @@ public class ClientManager : MonoBehaviour
 
 	}
 
+	public void TakeDamage( Protocol.BaseProtocol proto )
+	{
+
+		Protocol.ApplyDamage damage = proto.AsType<Protocol.ApplyDamage>();
+
+		if ( damage.player_id != playerId ) return;
+
+		health.RemoveHealth( damage.damage_amount );
+
+	}
 
 	public virtual void CompleatAction()
 	{

@@ -2551,6 +2551,7 @@ MonoBehaviour:
     type: 3}
   currentAmmo: 15
   ammoText: {fileID: 3187718564796213395}
+  ignoreCollider: 1
 --- !u!114 &5432778722240773897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4046,6 +4047,7 @@ MonoBehaviour:
   clientAgent: {fileID: 7571302951379966632}
   itemHold: {fileID: 391020814938527501}
   projectileLauncher: {fileID: 6748221255628624615}
+  health: {fileID: 1709199679064575046}
   uiActions:
   - tag: Player
     uiHold: {fileID: 3187718565448662150}

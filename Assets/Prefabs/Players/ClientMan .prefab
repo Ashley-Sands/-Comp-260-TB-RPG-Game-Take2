@@ -47,6 +47,7 @@ MonoBehaviour:
   clientAgent: {fileID: 4604559380998514760}
   itemHold: {fileID: 2677022653788040954}
   projectileLauncher: {fileID: 5144766527252469503}
+  health: {fileID: 3004753025715455525}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,10 +304,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientManager: {fileID: 2852695133282909723}
-  projectilePrefab: {fileID: 8024595666335156451, guid: 9985960ebd03f0f46a7877b7d21b6783,
+  projectilePrefab: {fileID: 8024595666335156451, guid: c44af088bbaef034ea7c5039c6dd0144,
     type: 3}
   currentAmmo: 15
   ammoText: {fileID: 0}
+  ignoreCollider: 1
 --- !u!114 &394675081842736764
 MonoBehaviour:
   m_ObjectHideFlags: 0

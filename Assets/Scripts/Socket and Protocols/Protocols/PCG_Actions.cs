@@ -58,6 +58,32 @@ namespace Protocol
 
     }
 
+    public class Explosion : BaseProtocol
+    {
+
+        public override char Identity => 'E';
+
+        public Vector3 Position {
+            get => new Vector3( x, y, z );
+            set {
+                x = value.x;
+                y = value.y;
+                z = value.z;
+            }
+        }
+
+        public float x, y, z;
+
+    }
+
+    public class ApplyDamage : BaseGameAction
+    {
+        public override char Identity => 'D';
+
+        public float damage_amount;
+
+    }
+
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
     public class ServerObject : BaseProtocol 
     {

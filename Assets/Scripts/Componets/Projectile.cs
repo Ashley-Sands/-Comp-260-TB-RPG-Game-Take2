@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
 	[SerializeField] GameObject explosionPrefab;
+	[SerializeField] bool sendExplosionMessage = true;
 
 	private void OnCollisionEnter ( Collision collision )
 	{
@@ -21,9 +22,13 @@ public class Projectile : MonoBehaviour
 
 		Destroy( gameObject );
 
-		// Tell the server iv exploded.
-		// TODO: ^^
-		// or should the explosion tell the server :?
+		if ( sendExplosionMessage )
+		{
+			new Protocol.Explosion()
+			{
+				Position = transform.position
+			}.Send();
+		}
 
 	}
 

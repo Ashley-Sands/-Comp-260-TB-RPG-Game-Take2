@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
         UpdateUi();
     }
 
-    void AddHealth( float healthToAdd)
+    public void AddHealth( float healthToAdd)
     {
         currentHealth += healthToAdd;
 
@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
 
     }
 
-    void RemoveHealth( float healthToRemove )
+    public void RemoveHealth( float healthToRemove )
     {
         currentHealth -= healthToRemove;
 

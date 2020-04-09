@@ -10,6 +10,7 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] private int currentAmmo = 15;
     [SerializeField] private TextMeshProUGUI ammoText;
     [SerializeField] private bool ignoreCollider = true;
+
     private void Start ()
     {
         UpdateUi();
