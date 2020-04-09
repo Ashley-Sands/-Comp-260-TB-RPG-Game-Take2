@@ -7,8 +7,8 @@ public class SpawnPlayer : MonoBehaviour
 
     [Tooltip("the spwan id is where player of player id will be spwaned :) ")]
     [SerializeField] private int spawnId = -1;
-    [SerializeField] ClientManager playerPrefab;
-    [SerializeField] ClientManager clientPrefab;
+    [SerializeField] private ClientManager playerPrefab;
+    [SerializeField] private ClientManager clientPrefab;
 
     void Awake()
     {

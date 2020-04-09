@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class PlayerManager : ClientManager
 {
 
+	[SerializeField] private ServerObject serverObject;
 	[SerializeField] private UiActionGroup[] uiActions;
 	public Transform pressedMarker;
 
@@ -40,9 +41,9 @@ public class PlayerManager : ClientManager
 	protected override void Start ()
 	{
 		base.Start();
+
 		// first things first update our position on the server.
-		Protocol.ServerObject serverObj = new Protocol.ServerObject( transform.position, Protocol.ServerObject.ObjectType.Player, GameCtrl.Inst.playerData.playerId );
-		serverObj.Send();
+		serverObject.Send();
 	}
 
 	private void Update ()
@@ -123,11 +124,11 @@ public class PlayerManager : ClientManager
 
 	public override void CompleatAction ()
 	{
-		
+
+		serverObject.Send();
+
 		base.CompleatAction();
 		nextAction = null;
-
-
 
 		NextAction();
 		print("Compleated");
@@ -162,9 +163,6 @@ public class PlayerManager : ClientManager
 			ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
 			Debug.Log( "Sending action from playerMannager :D" );
 
-			// if its a que server object we can move streat onto the next action
-			if ( nextAction is Protocol.QueueServerObject )
-				CompleatAction();
 		}
 
 

@@ -6,6 +6,7 @@ public class ClientManager : MonoBehaviour
 {
 
 	protected int playerId = -1;  // < 0 is unset 
+	public int PlayerId => playerId;
 
 	[SerializeField] private ClientAgent clientAgent;
 	[SerializeField] private ItemHold itemHold;
