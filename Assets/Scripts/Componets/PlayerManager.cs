@@ -23,6 +23,9 @@ public class PlayerManager : ClientManager
 	private ServerObject selectedServerObject;
 	public ServerObject SelectedServerObject => selectedServerObject;
 
+	private Transform selectedObject;
+	public Transform SelectedObject => selectedObject;
+
 	private void Awake ()
 	{
 		
@@ -64,6 +67,8 @@ public class PlayerManager : ClientManager
 				if ( hit.collider.gameObject.CompareTag( "RayBlocker" ) ) return;
 
 				selectedServerObject = hit.collider.GetComponent<ServerObject>();
+				selectedObject = hit.collider.transform;
+
 
 				hitLocation.Set( hit.point, hit.collider.gameObject );
 

@@ -85,6 +85,26 @@ namespace Protocol
 
     }
 
+    public class LookAtPosition : BaseGameAction
+    {
+        public override char Identity => 'R';
+
+        public Vector3 Position {
+            get => new Vector3( x, y, z );
+            set{
+                x = value.x;
+                y = value.y;
+                z = value.z;
+            }
+        }
+
+        public float x, y, z;
+
+    }
+
+
+    // TODO: move below into own file
+
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
     public class ServerObject : BaseProtocol 
     {
