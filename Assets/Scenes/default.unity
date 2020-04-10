@@ -12740,6 +12740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
+  clientManager: {fileID: 0}
   serverObjectId: 3
 --- !u!1 &569950907
 GameObject:
@@ -12895,6 +12896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
+  clientManager: {fileID: 0}
   serverObjectId: 2
 --- !u!1 &697218747
 GameObject:
@@ -15945,6 +15947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
+  clientManager: {fileID: 0}
   serverObjectId: 0
 --- !u!1 &927569076
 GameObject:
@@ -20750,6 +20753,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
+  clientManager: {fileID: 0}
   serverObjectId: 1
 --- !u!1 &971829536
 GameObject:
