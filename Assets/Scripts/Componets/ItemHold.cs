@@ -13,8 +13,10 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
     }
 
     private ServerObject currentHoldObject;
-    [SerializeField] private Vector3 holdOffset; 
-
+    [SerializeField] private Vector3 holdOffset;
+    [Tooltip("ui to display when i player has an item.")]
+    [SerializeField] private GameObject[] toggleOnUi; 
+    [SerializeField] private GameObject[] toggleOffUi; 
     private void Update ()
     {
 
@@ -36,6 +38,8 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
 
         clientManager.CompleatAction();
 
+        ToggleUI( toggleOnUi, currentHoldObject != null );
+        ToggleUI( toggleOffUi, !(currentHoldObject != null) );
     }
 
     public void DropItem()
@@ -51,6 +55,18 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
 
         clientManager.CompleatAction();
 
+        ToggleUI( toggleOnUi, !(currentHoldObject == null) );
+        ToggleUI( toggleOffUi, currentHoldObject == null );
+
+    }
+
+    private void ToggleUI( GameObject[] gos, bool active)
+    {
+        print( active + " :: " + toggleOnUi.Length );
+        if ( gos.Length > 0 )
+            print( active + "'''''@@@@@@@@@@@@@" );
+            foreach ( GameObject go in gos )
+                go.SetActive( active );
     }
 
 }

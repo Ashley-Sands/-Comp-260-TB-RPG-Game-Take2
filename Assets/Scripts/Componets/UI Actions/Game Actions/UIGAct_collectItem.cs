@@ -34,6 +34,29 @@ public class UIGAct_collectItem : UIGAct_base
     public void DropObject()
     {
 
+        if ( playerManager.SelectedServerObject != null )
+            return;
+
+        Protocol.GameAction gameAct = new Protocol.GameAction( Protocol.GameAction.Actions.DropItem );
+
+        playerManager.QueueAction( gameAct );
+
+    }
+
+    public void MoveToAndDropObject ()
+    {
+
+        if ( playerManager.SelectedServerObject != null )
+            return;
+
+        Protocol.MovePlayer movePlayer = new Protocol.MovePlayer()
+        {
+            Position = playerManager.HitLocation.location
+        };
+
+        playerManager.QueueAction( movePlayer );
+
+
         Protocol.GameAction gameAct = new Protocol.GameAction( Protocol.GameAction.Actions.DropItem );
 
         playerManager.QueueAction( gameAct );
