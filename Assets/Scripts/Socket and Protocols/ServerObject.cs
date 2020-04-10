@@ -52,7 +52,7 @@ public class ServerObject : MonoBehaviour
 
     public virtual void SelectObject( int objectId, ISelectServerObject selectedServerObjectInterface )
     {
-        if ( objectId == serverObjectId )
+        if ( serverObjectType != Protocol.ServerObject.ObjectType.Player && objectId == serverObjectId )
             selectedServerObjectInterface.SelectedObject = this;
     }
 

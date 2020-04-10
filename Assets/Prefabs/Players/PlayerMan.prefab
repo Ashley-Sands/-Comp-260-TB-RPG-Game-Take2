@@ -4081,6 +4081,7 @@ MonoBehaviour:
   projectileLauncher: {fileID: 6748221255628624615}
   health: {fileID: 1709199679064575046}
   lookAtPosition: {fileID: 3479780368160898372}
+  serverObject: {fileID: 3152853680788587652}
   uiActions:
   - tag: Player
     uiHold: {fileID: 3187718565448662150}
