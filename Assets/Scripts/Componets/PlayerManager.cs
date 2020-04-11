@@ -164,7 +164,7 @@ public class PlayerManager : ClientManager
 			if ( nextAction.SendLocal )
 				ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
 
-			Debug.Log( "Sending action from playerMannager :D" );
+			Debug.LogFormat( "Sending {0} action from playerMannager :D", nextAction.Identity );
 
 		}
 

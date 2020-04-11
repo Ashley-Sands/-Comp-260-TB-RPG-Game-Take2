@@ -5,6 +5,7 @@ using TMPro;
 
 public class Build : MonoBehaviour
 {
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] private ServerObject objPrefab;
     [SerializeField] private int buildItems = 3;
     [SerializeField] private TextMeshProUGUI buildText;
@@ -26,6 +27,8 @@ public class Build : MonoBehaviour
 
         so.serverObjectId = objId;
         so.Send(true);
+
+        playerManager.CompleatAction();
 
     }
 

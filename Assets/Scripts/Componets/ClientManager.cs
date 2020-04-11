@@ -27,7 +27,7 @@ public class ClientManager : MonoBehaviour
 			{ 'M', MovePlayer },
 			{ 'P', CollectItem },
 			{ 'A', Action },
-			{ 'D', TakeDamage },
+			{ 'D', SetHealth },
 			{ 'R', LookAt },
 			{ 'B', BuildObject }
 		};
@@ -83,7 +83,7 @@ public class ClientManager : MonoBehaviour
 
 	}
 
-	public void TakeDamage( Protocol.BaseProtocol proto )
+	public void SetHealth( Protocol.BaseProtocol proto )
 	{
 
 		Protocol.ApplyDamage damage = proto.AsType<Protocol.ApplyDamage>();

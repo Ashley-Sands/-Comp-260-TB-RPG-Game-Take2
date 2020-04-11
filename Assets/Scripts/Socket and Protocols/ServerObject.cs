@@ -32,9 +32,7 @@ public class ServerObject : MonoBehaviour
         Protocol.ProtocolHandler.Inst.Bind('#', UpdateServerObject);
 
         // if we are of player type, then the object id needs to be the player id
-        if ( serverObjectType == Protocol.ServerObject.ObjectType.Player && clientManager == null )
-            serverObjectId = -1;
-        else
+        if ( serverObjectType == Protocol.ServerObject.ObjectType.Player && clientManager != null )
             serverObjectId = clientManager.PlayerId;
 
     }
