@@ -16,13 +16,14 @@ public class Health : MonoBehaviour
     private void Start ()
     {
         UpdateUi();
-        ClampHealth();
-        UpdateUi();
     }
 
     public void SetHealth( float health )
     {
+ 
         currentHealth = health;
+        ClampHealth();
+        UpdateUi();
     }
 
     public void AddHealth( float healthToAdd)
