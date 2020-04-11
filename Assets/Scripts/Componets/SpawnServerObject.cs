@@ -48,7 +48,8 @@ public class SpawnServerObject : MonoBehaviour, ISelectServerObject
             Quaternion quat = Quaternion.identity;
             quat.eulerAngles = servObj.Rotation;
 
-            Instantiate( spawnObj, servObj.Position, quat );
+            ServerObject so = Instantiate( spawnObj, servObj.Position, quat );
+            so.serverObjectId = servObj.object_id;
 
         }
     }
