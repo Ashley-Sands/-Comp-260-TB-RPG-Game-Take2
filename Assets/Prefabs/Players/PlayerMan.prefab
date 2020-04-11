@@ -2882,9 +2882,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1255d8be0ef5c14890101f2ab956bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 0}
+  objPrefab: {fileID: 0}
   buildItems: 3
   buildText: {fileID: 3187718565862063994}
+  spawnOffset: 2
+  yPosition: 1.5
 --- !u!114 &7166570271497514323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4334,6 +4336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3187718565328829307}
   - component: {fileID: 3187718565328829306}
+  - component: {fileID: 5113605632072458028}
   m_Layer: 0
   m_Name: PlayerMan
   m_TagString: Untagged
@@ -4376,6 +4379,7 @@ MonoBehaviour:
   projectileLauncher: {fileID: 6748221255628624615}
   health: {fileID: 1709199679064575046}
   lookAtPosition: {fileID: 3479780368160898372}
+  build: {fileID: 0}
   serverObject: {fileID: 3152853680788587652}
   uiActions:
   - tag: Player
@@ -4389,6 +4393,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   x_rayBlock: 400
+--- !u!114 &5113605632072458028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3187718565328829309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 983f1a981b7e5474c8021f6b9fab83c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockPrefab: {fileID: 3378891090701766590, guid: 28becec4bf3726447a970568d3a8aee0,
+    type: 3}
 --- !u!1 &3187718565359668696
 GameObject:
   m_ObjectHideFlags: 0

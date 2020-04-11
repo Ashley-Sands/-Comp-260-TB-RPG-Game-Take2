@@ -13,6 +13,7 @@ public class ClientManager : MonoBehaviour
 	[SerializeField] private ProjectileLauncher projectileLauncher;
 	[SerializeField] private Health health;
 	[SerializeField] private Lookat_Position lookAtPosition;
+	[SerializeField] private Build build;						// this should on be present on the play
 
 	protected ClientAction currentAction;
 
@@ -27,7 +28,8 @@ public class ClientManager : MonoBehaviour
 			{ 'P', CollectItem },
 			{ 'A', Action },
 			{ 'D', TakeDamage },
-			{ 'R', LookAt }
+			{ 'R', LookAt },
+			{ 'B', BuildObject }
 		};
 
 		Protocol.ProtocolHandler.Inst.BindDict( bindActions );
@@ -104,6 +106,16 @@ public class ClientManager : MonoBehaviour
 
 		lookAtPosition.LookAtPosition( lookAtPos.Position );
 
+	}
+
+	public void BuildObject( Protocol.BaseProtocol protocol )
+	{
+
+		Protocol.BuildObject buildObj = protocol.AsType<Protocol.BuildObject>();
+
+		if ( buildObj.player_id != playerId ) return;
+
+		build.BuildObject( buildObj.obj_id );
 	}
 
 	public virtual void CompleatAction()

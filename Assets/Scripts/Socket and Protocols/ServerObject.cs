@@ -65,7 +65,7 @@ public class ServerObject : MonoBehaviour
 
         Protocol.ServerObject obj = proto.AsType<Protocol.ServerObject>();
 
-        if ( obj.Type != serverObjectType || obj.object_id != serverObjectId )
+        if ( obj.Action != Protocol.ServerObject.ObjectAction.Defualt || obj.Type != serverObjectType || obj.object_id != serverObjectId )
             return;
 
         // update the position of the object.
@@ -77,11 +77,14 @@ public class ServerObject : MonoBehaviour
     /// <summary>
     /// Sends the ServerObject Protocol for this object to the server :)
     /// </summary>
-    public virtual void Send()
+    public virtual void Send( bool newObject = false)
     {
-        if ( transform.position == lastPosition && transform.eulerAngles == lastRotation) return;
 
-        Protocol.ServerObject obj = new Protocol.ServerObject( transform.position, transform.eulerAngles, serverObjectType, serverObjectId );
+        if ( !newObject && transform.position == lastPosition && transform.eulerAngles == lastRotation) return;
+
+        Protocol.ServerObject.ObjectAction soACtion = newObject ? Protocol.ServerObject.ObjectAction.Add : Protocol.ServerObject.ObjectAction.Defualt;
+
+        Protocol.ServerObject obj = new Protocol.ServerObject( transform.position, transform.eulerAngles, serverObjectType, serverObjectId, soACtion );
         obj.Send();
 
         lastPosition = transform.position;

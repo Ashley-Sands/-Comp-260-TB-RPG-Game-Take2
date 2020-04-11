@@ -36391,6 +36391,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3187718564655761685, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564655761685, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564655761685, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3187718564655761685, guid: 0ee2e27fe967ab549b964f020ebeac3a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5129338310111925697, guid: 0ee2e27fe967ab549b964f020ebeac3a,
         type: 3}
       propertyPath: m_firstOverflowCharacterIndex

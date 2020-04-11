@@ -8,6 +8,13 @@ namespace Protocol
     {
 
         public int player_id;
+        /// <summary>
+        /// Should the message be sent to self (locally)
+        /// For most cases this is true but sometimes 
+        /// we need to get some info from the server 
+        /// befor running the action.
+        /// </summary>
+        public virtual bool SendLocal => true;  
 
     }
 
@@ -102,13 +109,28 @@ namespace Protocol
 
     }
 
+    public class BuildObject : BaseGameAction
+    {
+
+        public override char Identity => 'B';
+        public override bool SendLocal => false;
+
+        public ServerObject.ObjectType Type {
+            get => (ServerObject.ObjectType)type;
+            set => type = (int)value;
+        }
+
+        public int obj_id;  // return by the server..
+        public int type;
+
+    }
 
     // TODO: move below into own file
 
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
     public class ServerObject : BaseProtocol 
     {
-        public enum ObjectType { Player = 0, Relic = 1 }
+        public enum ObjectType { Player = 0, Relic = 1, Block = 2 }
         public enum ObjectAction { Defualt = 0, Add = 1, Destroy = 2 }
         public override char Identity => '#';
 

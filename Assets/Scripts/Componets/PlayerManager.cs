@@ -160,7 +160,10 @@ public class PlayerManager : ClientManager
 			nextAction.player_id = playerId;
 
 			ClientSocket.ActiveSocket.SendMsg( nextAction );
-			ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
+
+			if ( nextAction.SendLocal )
+				ClientSocket.ActiveSocket.LocalSendMsg( nextAction );
+
 			Debug.Log( "Sending action from playerMannager :D" );
 
 		}
