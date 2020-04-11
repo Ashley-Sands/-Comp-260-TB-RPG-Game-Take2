@@ -10,18 +10,26 @@ public class RotateCam : MonoBehaviour
 
     Vector3 lastMousePosition;
 
+    Vector3 rotation = Vector3.zero;
+
+    private void Start ()
+    {
+        rotation = camHold.eulerAngles;
+    }
+
     private void Update ()
     {
 
         Vector3 mouseDelta = Input.mousePosition - lastMousePosition;
 
+        if ( Input.GetMouseButtonDown( 2 ) )
+            rotation = camHold.eulerAngles;
+
         if ( Input.GetMouseButton( 2 ) )  // middle button
         {
-            print( "fadsfadsfads" );
-            Vector3 rot = camHold.eulerAngles;
-            rot.y += ( mouseDelta.x / mouseSpeed ) * rotateSpeed * Time.deltaTime;
-            rot.x += ( mouseDelta.y / mouseSpeed ) * rotateSpeed * Time.deltaTime;
-            camHold.eulerAngles = rot;
+            rotation.y += ( mouseDelta.x / mouseSpeed ) * rotateSpeed * Time.deltaTime;
+            rotation.x -= ( mouseDelta.y / mouseSpeed ) * rotateSpeed * Time.deltaTime;
+            camHold.eulerAngles = rotation;
         }
 
         lastMousePosition = Input.mousePosition;
