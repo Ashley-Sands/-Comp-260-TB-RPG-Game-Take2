@@ -47,6 +47,7 @@ public class Health : MonoBehaviour
     public void Kill( )
     {
         currentHealth = -1;
+        UpdateUi();
         HealthDepleated?.Invoke();
     }
 
@@ -66,8 +67,11 @@ public class Health : MonoBehaviour
 
     private void UpdateUi()
     {
-        if (healthText != null)
-            healthText.text = string.Format( "{0}/{1}", currentHealth, maxHalth );
+        if ( healthText != null )
+            if ( currentHealth < 0 )
+                healthText.text = "Dead!";
+            else
+                healthText.text = string.Format( "{0}/{1}", currentHealth, maxHalth );
 
     }
 

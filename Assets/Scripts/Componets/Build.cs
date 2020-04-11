@@ -30,6 +30,8 @@ public class Build : MonoBehaviour
 
         playerManager.CompleatAction();
 
+        --buildItems;
+        UpdateUi();
     }
 
     private void UpdateUi()

@@ -7,6 +7,7 @@ public class KillPlayer : MonoBehaviour
 {
 
     [SerializeField] private Transform playerCamHold;
+    [SerializeField] private GameObject destroyObject;
     [SerializeField] private GameObject deadedObject;
 
     private void Start ()
@@ -25,7 +26,7 @@ public class KillPlayer : MonoBehaviour
 
         Instantiate( deadedObject, position, transform.rotation );
 
-        Destroy( gameObject );
+        Destroy( destroyObject );
 
     }
 
