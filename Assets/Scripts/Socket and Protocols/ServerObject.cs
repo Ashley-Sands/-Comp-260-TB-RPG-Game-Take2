@@ -63,7 +63,9 @@ public class ServerObject : MonoBehaviour
 
         Protocol.ServerObject obj = proto.AsType<Protocol.ServerObject>();
 
-        if ( obj.Action != Protocol.ServerObject.ObjectAction.Defualt || obj.Type != serverObjectType || obj.object_id != serverObjectId )
+        if ( obj.Action != Protocol.ServerObject.ObjectAction.Destroy && obj.Type == serverObjectType && obj.object_id == serverObjectId )
+            Destroy( gameObject );
+        else if ( obj.Action != Protocol.ServerObject.ObjectAction.Defualt || obj.Type != serverObjectType || obj.object_id != serverObjectId )
             return;
 
         // update the position of the object.
