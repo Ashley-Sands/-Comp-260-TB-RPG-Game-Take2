@@ -14,6 +14,8 @@ public class Client
 
     public int playerId;        // In Game
 
+    public bool alive = true;
+
     public Client( int _clientId, string _nickname, int _playerId )
     {
         clientId = _clientId;

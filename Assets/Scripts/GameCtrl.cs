@@ -98,6 +98,22 @@ public class GameCtrl : MonoBehaviour
 
     }
 
+    public void KillPlayer( int player_id )
+    {
+
+        for ( int i = 0; i < clientData.Length; i++ )
+        {
+            if ( clientData[ i ].playerId != player_id ) continue;
+
+            clientData[ i ].alive = false;
+
+            if ( playerData.playerId == player_id )
+                playerData.alive = false;
+
+        }
+
+    }
+
     private void OnDestroy ()
     {
         Protocol.ProtocolHandler.Inst.Unbind( 'i', IdentityRequest );

@@ -92,10 +92,14 @@ public class ClientManager : MonoBehaviour
 		if ( damage.player_id != playerId ) return;
 
 		if ( damage.kill )
+		{
 			health.Kill();
+			GameCtrl.Inst.KillPlayer( playerId );
+		}
 		else    // let's do some damage boys....
+		{
 			health.SetHealth( damage.health );
-
+		}
 	}
 
 	public void LookAt ( Protocol.BaseProtocol protocol )
