@@ -49,6 +49,7 @@ MonoBehaviour:
   projectileLauncher: {fileID: 5144766527252469503}
   health: {fileID: 3004753025715455525}
   lookAtPosition: {fileID: 5440393967377784880}
+  build: {fileID: 0}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +147,7 @@ GameObject:
   - component: {fileID: 2677022653788040954}
   - component: {fileID: 5144766527252469503}
   - component: {fileID: 394675081842736764}
+  - component: {fileID: 587483587708365561}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -324,6 +326,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientManager: {fileID: 2852695133282909723}
   holdOffset: {x: 0.2, y: 0.5, z: 1.2}
+  toggleOnUi: []
+  toggleOffUi: []
 --- !u!114 &5144766527252469503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +358,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1255d8be0ef5c14890101f2ab956bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallPrefab: {fileID: 0}
+  playerManager: {fileID: 0}
+  objPrefab: {fileID: 0}
   buildItems: 3
   buildText: {fileID: 0}
+  spawnOffset: 2
+  yPosition: 1.5
+--- !u!114 &587483587708365561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2852695134291958306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fbdc3321227ec94c825bf0d6b62c4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamHold: {fileID: 0}
+  deadedObject: {fileID: 1140869934689413707, guid: 6452f60b1773eed42803bebe1cc11e54,
+    type: 3}
