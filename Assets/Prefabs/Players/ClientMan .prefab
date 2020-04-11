@@ -377,5 +377,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamHold: {fileID: 0}
+  destroyObject: {fileID: 2852695133282909722}
   deadedObject: {fileID: 1140869934689413707, guid: 6452f60b1773eed42803bebe1cc11e54,
     type: 3}
