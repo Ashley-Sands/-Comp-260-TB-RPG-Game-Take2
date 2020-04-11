@@ -2947,8 +2947,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbdc3321227ec94c825bf0d6b62c4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamHold: {fileID: 6167859650557275384}
-  destroyObject: {fileID: 4928477944320071460}
+  unparentObjects:
+  - {fileID: 6167859650557275384}
+  - {fileID: 3187718565522927296}
+  - {fileID: 3187718564463876565}
+  destroyObject: {fileID: 3187718565328829309}
   deadedObject: {fileID: 1140869934689413707, guid: 6452f60b1773eed42803bebe1cc11e54,
     type: 3}
 --- !u!1 &3187718564731296211
@@ -7235,7 +7238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camHold: {fileID: 6167859650557275384}
   mouseSpeed: 10
-  rotateSpeed: 45
+  rotateSpeed: 60
 --- !u!114 &270241213963124381
 MonoBehaviour:
   m_ObjectHideFlags: 0

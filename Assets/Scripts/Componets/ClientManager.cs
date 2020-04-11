@@ -42,6 +42,7 @@ public class ClientManager : MonoBehaviour
 
 	public void MovePlayer( Protocol.BaseProtocol proto)
 	{
+	
 		Protocol.MovePlayer movePlayer = proto.AsType<Protocol.MovePlayer>();
 
 		print( "Move" + movePlayer.player_id + "==" + playerId + " :: "+ transform.name );

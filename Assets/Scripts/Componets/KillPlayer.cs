@@ -6,7 +6,7 @@ using UnityEngine;
 public class KillPlayer : MonoBehaviour
 {
 
-    [SerializeField] private Transform playerCamHold;
+    [SerializeField] private Transform[] unparentObjects;
     [SerializeField] private GameObject destroyObject;
     [SerializeField] private GameObject deadedObject;
 
@@ -18,8 +18,8 @@ public class KillPlayer : MonoBehaviour
     private void Kill()
     {
 
-        if (playerCamHold)
-            playerCamHold.parent = null;
+        for ( int i = 0; i < unparentObjects.Length; i++ )
+            unparentObjects[i].parent = null;
 
         Vector3 position = transform.position;
         position.y = 1f;
