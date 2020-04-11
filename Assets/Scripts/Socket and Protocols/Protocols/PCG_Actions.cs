@@ -87,7 +87,7 @@ namespace Protocol
     {
         public override char Identity => 'D';
 
-        public float damage;
+        public float health;
         public bool kill;
 
     }

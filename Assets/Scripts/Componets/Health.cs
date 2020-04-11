@@ -16,6 +16,13 @@ public class Health : MonoBehaviour
     private void Start ()
     {
         UpdateUi();
+        ClampHealth();
+        UpdateUi();
+    }
+
+    public void SetHealth( float health )
+    {
+        currentHealth = health;
     }
 
     public void AddHealth( float healthToAdd)
@@ -51,7 +58,7 @@ public class Health : MonoBehaviour
         }
         else if ( currentHealth <= 0 )
         {
-            Debug.Log( "Hmmm, it appears you are dead (out of sync with the server). Have you been fiddling? If so call 01 21 do 1. " );
+            Debug.Log( "Hmmm, it appears the server is brock :( " );
             currentHealth = 1;
         }
     }
