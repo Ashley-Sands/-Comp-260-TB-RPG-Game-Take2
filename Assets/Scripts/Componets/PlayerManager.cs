@@ -36,6 +36,8 @@ public class PlayerManager : ClientManager
 			uia.uiHold.SetActive( false );
 		}
 
+		GameCtrl.Inst.gameLoopEvent += GameLoopUpdate;
+
 	}
 
 	protected override void Start ()
@@ -49,7 +51,7 @@ public class PlayerManager : ClientManager
 	private void Update ()
 	{
 
-		if ( pressedMarker == null || !GameCtrl.Inst.CurrentClientIsPlayer ) return;
+		if ( pressedMarker == null || !GameCtrl.Inst.CurrentClientIsPlayerAndActive ) return;
 
 		// this should on be active when this player is the current player
 		//if ( !GameCtrl.Inst.CurrentClientIsPlayer ) return;
@@ -124,6 +126,23 @@ public class PlayerManager : ClientManager
 
 	}
 
+	private void GameLoopUpdate( Protocol.GameLoop.Actions action, int ttl )
+	{
+		// if its the end of our go, clear the queue, cancel the current action and update out position on the server :D
+		if ( action == Protocol.GameLoop.Actions.End && GameCtrl.Inst.CurrentPlauerId == playerId )
+		{
+			print( "Clear remaining Actions" );
+			ClearActions();
+
+			currentAction?.CancelAction();
+			currentAction = null;
+			nextAction = null;
+
+			serverObject.Send();	// finally update out final position on the server
+
+		}
+	}
+
 	public override void CompleatAction ()
 	{
 
@@ -176,6 +195,11 @@ public class PlayerManager : ClientManager
 	public void ClearActions()
 	{
 		actionQueue.Clear();
+	}
+
+	private void OnDestroy ()
+	{
+		GameCtrl.Inst.gameLoopEvent += GameLoopUpdate;
 	}
 
 }

@@ -34,7 +34,10 @@ public class GameCtrl : MonoBehaviour
         }
     }
 
-    public bool CurrentClientIsPlayer => playerData.compareClient( CurrentClient );
+    public Protocol.GameLoop.Actions currentGameLoopState = Protocol.GameLoop.Actions.End;
+    public bool CurrentClientIsPlayerAndActive => playerData.compareClient( CurrentClient ) && currentGameLoopState == Protocol.GameLoop.Actions.Start;
+    public int CurrentPlauerId => clientData[ currentClientId ].playerId;
+    public string CurrentPlayerName => clientData[ currentClientId ].nickname;
 
     void Awake()
     {
@@ -86,6 +89,8 @@ public class GameCtrl : MonoBehaviour
     {
 
         Protocol.GameLoop gameLoop = proto.AsType<Protocol.GameLoop>();
+
+        currentGameLoopState = gameLoop.Action;
 
         if ( gameLoop.Action == Protocol.GameLoop.Actions.Change )
         {
