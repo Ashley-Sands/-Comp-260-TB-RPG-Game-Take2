@@ -60,7 +60,7 @@ namespace Protocol
                 { 'm', new ProtocolEvent() },    // message
 
                 // Game actions
-                // Game actions
+                { '>', new ProtocolEvent() },     // Game Loop
                 { 'M', new ProtocolEvent() },     // Move Player
                 { 'A', new ProtocolEvent() },     // Game Action
                 { 'P', new ProtocolEvent() },     // Collect Item
@@ -181,6 +181,9 @@ namespace Protocol
                     break;
                 case 'm':
                     newProto = JsonUtility.FromJson<Message>( json );
+                    break;
+                case '>':
+                    newProto = JsonUtility.FromJson<GameLoop>( json );
                     break;
                 case 'M':
                     newProto = JsonUtility.FromJson<MovePlayer>( json );

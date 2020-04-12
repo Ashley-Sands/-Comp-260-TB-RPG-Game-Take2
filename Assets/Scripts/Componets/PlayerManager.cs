@@ -49,7 +49,7 @@ public class PlayerManager : ClientManager
 	private void Update ()
 	{
 
-		if ( pressedMarker == null ) return;
+		if ( pressedMarker == null || !GameCtrl.Inst.CurrentClientIsPlayer ) return;
 
 		// this should on be active when this player is the current player
 		//if ( !GameCtrl.Inst.CurrentClientIsPlayer ) return;

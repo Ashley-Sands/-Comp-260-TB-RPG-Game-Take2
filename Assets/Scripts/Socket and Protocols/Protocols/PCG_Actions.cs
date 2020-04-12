@@ -125,6 +125,21 @@ namespace Protocol
 
     }
 
+    public class GameLoop : BaseGameAction 
+    {
+        public override char Identity => '>';
+
+        public enum Actions { Change = 0, Start = 1, End = 2 }
+
+        public Actions Action {
+            get => (Actions)action;
+            set => action = (int)value;
+        }
+
+        public int action;
+        public int t;
+
+    }
     // TODO: move below into own file
 
     // Altho this inherits from BaseProtocol its an action that can only happen in the game

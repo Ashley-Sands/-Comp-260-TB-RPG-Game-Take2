@@ -8,7 +8,11 @@ using UnityEngine;
 public class GameCtrl : MonoBehaviour
 {
 
-    public event System.Action<Client[]> gameClientsSet;
+    public event System.Action<Client[]>                            gameClientsSet;
+    /// <summary>
+    /// the action of the event, 'time to live' for the event
+    /// </summary>
+    public event System.Action<Protocol.GameLoop.Actions, int>      gameLoopEvent;
 
     private static GameCtrl inst;
     public static GameCtrl Inst {
@@ -42,6 +46,7 @@ public class GameCtrl : MonoBehaviour
         Protocol.ProtocolHandler.Inst.Bind( 'i', IdentityRequest );
         Protocol.ProtocolHandler.Inst.Bind( 'I', IdentityStatus );
         Protocol.ProtocolHandler.Inst.Bind( 'G', UpdateGameClients );
+        Protocol.ProtocolHandler.Inst.Bind( '>', UpdateGameLoop );
     }
 
     private void IdentityRequest( Protocol.BaseProtocol prto )
@@ -77,6 +82,23 @@ public class GameCtrl : MonoBehaviour
 
     }
 
+    private void UpdateGameLoop( Protocol.BaseProtocol proto )
+    {
+
+        Protocol.GameLoop gameLoop = proto.AsType<Protocol.GameLoop>();
+
+        if ( gameLoop.Action == Protocol.GameLoop.Actions.Change )
+        {
+            for ( int i = 0; i < clientData.Length; i++ )
+                if ( clientData[ i ].playerId == gameLoop.player_id)
+                    currentClientId = i;
+
+        }
+
+        gameLoopEvent?.Invoke( gameLoop.Action, gameLoop.t );
+
+    }
+
     private void UpdateGameClients( Protocol.BaseProtocol proto )
     {
 
@@ -95,6 +117,20 @@ public class GameCtrl : MonoBehaviour
         }
         print( Inst.clientData.Length + " :: "+ clientData.Length );
         gameClientsSet?.Invoke( clientData );
+
+        // now that the final list of active clients have arrived
+        // we can now notify the server that the scene is ready to play
+        // Also to be far, we should make sure that the object list has been received as well
+        // but thats a task for later. for now we'll just hope its all setup correctly :)
+        // TODO: ^^^
+        // TODO: Uncomment... Im going to get the relix to work first. ( it will be easier to test :) )
+        Protocol.ClientStatus clientStatus = new Protocol.ClientStatus()
+        {
+            StatusType = Protocol.ClientStatusType.GameReady,
+            ok = true
+        };
+
+        clientStatus.Send();
 
     }
 
@@ -119,6 +155,7 @@ public class GameCtrl : MonoBehaviour
         Protocol.ProtocolHandler.Inst.Unbind( 'i', IdentityRequest );
         Protocol.ProtocolHandler.Inst.Unbind( 'I', IdentityStatus );
         Protocol.ProtocolHandler.Inst.Unbind( 'G', UpdateGameClients );
+        Protocol.ProtocolHandler.Inst.Unbind( '>', UpdateGameLoop );
 
     }
 }
