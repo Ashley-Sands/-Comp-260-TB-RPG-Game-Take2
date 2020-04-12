@@ -79,16 +79,21 @@ public class PlayerManager : ClientManager
 				hitLocation.Set( hit.point, hit.collider.gameObject );
 
 				SetUiGroup();
-
-				Vector3 pressedLocation = hit.point;
-				pressedLocation.y = 0.5f;
-				pressedMarker.position = pressedLocation;
+				SetPressedMarker( hit.point );
 
 				print( hit.point + " :: " + hit.collider.gameObject.name + ", Active group: "+activeUiGroup );
 			}
 
 			
 		}
+
+	}
+
+	private void SetPressedMarker( Vector3 pressedLocation )
+	{
+		
+		pressedLocation.y = 0.5f;
+		pressedMarker.position = pressedLocation;
 
 	}
 
@@ -133,17 +138,26 @@ public class PlayerManager : ClientManager
 
 	private void GameLoopUpdate( Protocol.GameLoop.Actions action, int ttl )
 	{
-		// if its the end of our go, clear the queue, cancel the current action and update out position on the server :D
 		if ( action == Protocol.GameLoop.Actions.End && GameCtrl.Inst.CurrentPlauerId == playerId )
 		{
+			// if its the end of our go, clear the queue, cancel the current action and update out position on the server :D
 			print( "Clear remaining Actions" );
 			ClearActions();
+			pressedMarker.gameObject.SetActive( false );
 
 			currentAction?.CancelAction();
 			currentAction = null;
 			nextAction = null;
 
 			serverObject.Send();	// finally update out final position on the server
+
+		}
+		else if ( action == Protocol.GameLoop.Actions.Start && GameCtrl.Inst.CurrentPlauerId == playerId )
+		{
+
+			// if we are starting a go move the turn the marker back on and move it to the players current location.
+			SetPressedMarker( serverObject.transform.position );
+			pressedMarker.gameObject.SetActive( true );
 
 		}
 	}
