@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class PlayerManager : ClientManager
 {
 
-	[SerializeField] private ServerObject serverObject;
 	[SerializeField] private string uiAction_defaultTag = "NavArea";
 	[SerializeField] private UiActionGroup[] uiActions;
 	public Transform pressedMarker;
@@ -39,14 +38,6 @@ public class PlayerManager : ClientManager
 
 		GameCtrl.Inst.gameLoopEvent += GameLoopUpdate;
 
-	}
-
-	protected override void Start ()
-	{
-		base.Start();
-
-		// first things first update our position on the server.
-		serverObject.Send();
 	}
 
 	private void Update ()
@@ -227,9 +218,10 @@ public class PlayerManager : ClientManager
 		actionQueue.Clear();
 	}
 
-	private void OnDestroy ()
+	protected override void OnDestroy ()
 	{
-		GameCtrl.Inst.gameLoopEvent += GameLoopUpdate;
+		base.OnDestroy();
+		GameCtrl.Inst.gameLoopEvent -= GameLoopUpdate;
 	}
 
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4067f6a59aa4cb4ba1e03cd6d773fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverObject: {fileID: 6566700704294047624}
   clientAgent: {fileID: 4604559380998514760}
   itemHold: {fileID: 2677022653788040954}
   projectileLauncher: {fileID: 5144766527252469503}
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 394675081842736764}
   - component: {fileID: 587483587708365561}
   m_Layer: 10
-  m_Name: Player
+  m_Name: Client
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2852695134291958306}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 4.08, y: 1.5, z: 6.99}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2852695133527277496}
@@ -264,7 +265,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 0
-  clientManager: {fileID: 2852695133282909723}
   serverObjectId: -1
 --- !u!114 &4604559380998514760
 MonoBehaviour:
@@ -279,9 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientManager: {fileID: 2852695133282909723}
-  moveSpeed: 5
   complete: 0
-  completeRadius: 0
 --- !u!114 &5440393967377784880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -376,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fbdc3321227ec94c825bf0d6b62c4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamHold: {fileID: 0}
+  unparentObjects: []
   destroyObject: {fileID: 2852695133282909722}
   deadedObject: {fileID: 1140869934689413707, guid: 6452f60b1773eed42803bebe1cc11e54,
     type: 3}

@@ -15,7 +15,7 @@ public class ClientAgent : ClientAction
     public bool complete = false;
 
     public bool Naving => !complete && !agent.isStopped && agent.remainingDistance > 0f;
-
+    public bool FindingPath => agent.pathPending;
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();

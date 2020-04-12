@@ -10,8 +10,6 @@ public class ServerObject : MonoBehaviour
 
     private bool inUse = false;
     [SerializeField] private Protocol.ServerObject.ObjectType serverObjectType;
-    [Tooltip("Ignored if the server object is not type player, in that case this must be present")]
-    [SerializeField] private ClientManager clientManager;
 
     public int serverObjectId = -1;     // all ids should be >= 0
     private Vector3 lastPosition;
@@ -25,15 +23,17 @@ public class ServerObject : MonoBehaviour
     private void Awake ()
     {
         selectServerObject += SelectObject;
-    }
 
-    private void Start ()
-    {
         Protocol.ProtocolHandler.Inst.Bind('#', UpdateServerObject);
 
+    }
+
+    public void PlayerInit( int playerId )
+    {
+
         // if we are of player type, then the object id needs to be the player id
-        if ( serverObjectType == Protocol.ServerObject.ObjectType.Player && clientManager != null )
-            serverObjectId = clientManager.PlayerId;
+        if ( serverObjectType == Protocol.ServerObject.ObjectType.Player )
+            serverObjectId = playerId;
 
     }
 
@@ -61,12 +61,34 @@ public class ServerObject : MonoBehaviour
     public void UpdateServerObject( Protocol.BaseProtocol proto )
     {
 
+
         Protocol.ServerObject obj = proto.AsType<Protocol.ServerObject>();
+
+        if ( obj.Type != serverObjectType || obj.object_id != serverObjectId ) return;
+
         print( obj.Action +"=="+ Protocol.ServerObject.ObjectAction.Destroy + " && " + obj.Type + "==" + serverObjectType + " && " + obj.object_id + "==" + serverObjectId );
-        if ( obj.Action == Protocol.ServerObject.ObjectAction.Destroy && obj.Type == serverObjectType && obj.object_id == serverObjectId )
+        if ( obj.Action == Protocol.ServerObject.ObjectAction.Destroy )
+        {
             Destroy( gameObject );
-        else if ( obj.Action != Protocol.ServerObject.ObjectAction.Defualt || obj.Type != serverObjectType || obj.object_id != serverObjectId )
+        }
+        
+        if ( obj.Action != Protocol.ServerObject.ObjectAction.Defualt )
+        {
             return;
+        }
+
+        // stop the nav agent if present.
+        ClientAgent agent = GetComponent<ClientAgent>();
+
+        Debug.LogError( name + " :: "+ (agent != null) +" && "+ !agent.FindingPath +" && "+ agent.Naving );
+
+        if ( agent != null && !agent.FindingPath && agent.Naving )
+        {
+            print( "Stop Agent." );
+            agent?.CancelAction();
+        }
+
+        print( "TAG " + gameObject.tag + " transform.position " + transform.position );
 
         // update the position of the object.
         transform.position = lastPosition = obj.Position;

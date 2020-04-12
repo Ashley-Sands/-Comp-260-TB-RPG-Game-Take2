@@ -8,6 +8,7 @@ public class ClientManager : MonoBehaviour
 	protected int playerId = -1;  // < 0 is unset 
 	public int PlayerId => playerId;
 
+	[SerializeField] protected ServerObject serverObject;
 	[SerializeField] private ClientAgent clientAgent;
 	[SerializeField] private ItemHold itemHold;
 	[SerializeField] private ProjectileLauncher projectileLauncher;
@@ -38,14 +39,15 @@ public class ClientManager : MonoBehaviour
 	public virtual void Init( int pid )
 	{
 		playerId = pid;
+		serverObject.PlayerInit( pid );
+		// first things first update our position on the server.
+		serverObject.Send();
 	}
 
 	public void MovePlayer( Protocol.BaseProtocol proto)
 	{
 	
 		Protocol.MovePlayer movePlayer = proto.AsType<Protocol.MovePlayer>();
-
-		print( "Move" + movePlayer.player_id + "==" + playerId + " :: "+ transform.name );
 
 		if ( movePlayer.player_id == playerId )
 		{
@@ -128,7 +130,7 @@ public class ClientManager : MonoBehaviour
 		currentAction = null;
 	}
 
-	private void OnDestroy ()
+	protected virtual void OnDestroy ()
 	{
 		Protocol.ProtocolHandler.Inst.UnbindDict( bindActions );
 	}
