@@ -7,6 +7,7 @@ public class PlayerManager : ClientManager
 {
 
 	[SerializeField] private ServerObject serverObject;
+	[SerializeField] private string uiAction_defaultTag = "NavArea";
 	[SerializeField] private UiActionGroup[] uiActions;
 	public Transform pressedMarker;
 
@@ -106,6 +107,10 @@ public class PlayerManager : ClientManager
 			{
 				nextUiGroup = i;
 				break;
+			}
+			else if ( uiActions[i].tag == uiAction_defaultTag )	// as a fallback if the tag is not found display the default menu (ie, NavArea )
+			{
+				nextUiGroup = i;
 			}
 
 		}
