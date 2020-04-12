@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lookat_Position : MonoBehaviour
+public class Lookat_Position : ClientAction
 {
     [SerializeField] private ClientManager playerManager;
     private bool isSet = false;
@@ -35,6 +35,11 @@ public class Lookat_Position : MonoBehaviour
     {
         LocationToLookAt = pos;
         isSet = true;
+    }
+
+    public override void CancelAction ()
+    {
+        isSet = false;
     }
 
 }

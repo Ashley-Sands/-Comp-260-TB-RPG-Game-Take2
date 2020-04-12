@@ -80,8 +80,6 @@ public class ServerObject : MonoBehaviour
         // stop the nav agent if present.
         ClientAgent agent = GetComponent<ClientAgent>();
 
-        Debug.LogError( name + " :: "+ (agent != null) +" && "+ !agent.FindingPath +" && "+ agent.Naving );
-
         if ( agent != null && !agent.FindingPath && agent.Naving )
         {
             print( "Stop Agent." );

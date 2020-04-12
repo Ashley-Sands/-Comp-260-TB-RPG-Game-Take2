@@ -38,6 +38,8 @@ public class PlayerManager : ClientManager
 
 		GameCtrl.Inst.gameLoopEvent += GameLoopUpdate;
 
+		pressedMarker.gameObject.SetActive( false );
+
 	}
 
 	private void Update ()
