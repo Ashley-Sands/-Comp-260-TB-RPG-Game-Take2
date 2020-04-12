@@ -104,6 +104,15 @@ public class PlayerManager : ClientManager
 		// if theres not switch of the current group
 		// other wise set the current ui group.
 
+		// if we not active turn off the ui optoins
+		if ( !GameCtrl.Inst.CurrentClientIsPlayerAndActive )
+		{
+			if ( activeUiGroup > -1 )
+				uiActions[ activeUiGroup ].uiHold.SetActive( false );
+			activeUiGroup = -1;
+			return;
+		}
+
 		int nextUiGroup = -1;
 
 		for ( int i = 0; i < uiActions.Length; i++ )
@@ -148,6 +157,8 @@ public class PlayerManager : ClientManager
 			currentAction?.CancelAction();
 			currentAction = null;
 			nextAction = null;
+
+			SetUiGroup();
 
 			serverObject.Send();	// finally update out final position on the server
 
