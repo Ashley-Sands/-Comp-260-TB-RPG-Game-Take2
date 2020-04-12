@@ -459,6 +459,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 3187718565817396240}
+  currentPlayerText: {fileID: 0}
+  playerListText: {fileID: 0}
 --- !u!1 &3187718563834287378
 GameObject:
   m_ObjectHideFlags: 0
@@ -5115,7 +5117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f674b357806e644bbefd0c97971e3a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 8551774502803357715}
+  playerListText: {fileID: 8551774502803357715}
+  activePlayerNameText: {fileID: 3187718565312427292}
 --- !u!114 &3187718565522927299
 MonoBehaviour:
   m_ObjectHideFlags: 0

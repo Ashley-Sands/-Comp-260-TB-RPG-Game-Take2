@@ -6,37 +6,48 @@ using TMPro;
 public class UIAct_SetGamePlayersText : MonoBehaviour
 {
 
-    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI playerListText;
+    [SerializeField] private TextMeshProUGUI activePlayerNameText;
 
     void Start()
     {
+        GameCtrl.Inst.gameLoopEvent += UpdateGameInfo;
+        ReceivedClients( GameCtrl.Inst.clientData );
+    }
+
+    private void UpdateGameInfo( Protocol.GameLoop.Actions action, int ttl )
+    {
 
         ReceivedClients( GameCtrl.Inst.clientData );
+        CurrentPlayerChanged();
     }
 
     private void ReceivedClients( Client[] clients )
     {
         string players = "";
-
         foreach ( Client c in clients )
-            players = string.Format( "{0}{1} - {2}\n", players, c.nickname, c.playerId );
+        {
+            string prefix = "#";
 
-        text.text = players;
+            if ( c.playerId == GameCtrl.Inst.CurrentPlauerId )
+                prefix = ">";
+
+            players = string.Format( "{0}{1} ({2}) - {3}\n", players, prefix, c.playerId, c.nickname );
+
+        }
+
+        playerListText.text = players;
 
     }
 
     private void CurrentPlayerChanged()
     {
-
-    }
-
-    private void UpdateUI ()
-    {
-       
+        activePlayerNameText.text = GameCtrl.Inst.CurrentPlayerName;
     }
 
     private void OnDestroy ()
     {
+        GameCtrl.Inst.gameLoopEvent -= UpdateGameInfo;
         GameCtrl.Inst.gameClientsSet -= ReceivedClients;
 
     }

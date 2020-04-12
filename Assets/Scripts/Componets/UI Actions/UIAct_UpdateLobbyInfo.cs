@@ -64,12 +64,12 @@ public class UIAct_UpdateLobbyInfo : MonoBehaviour
 
         while ( ttl > 0 )
         {
+
+            level_start_in_text.text = string.Format( "{0} seconds...", Mathf.Floor( ttl ) );
+
             yield return new WaitForSeconds( 1f );
             
             ttl -= 1f;
-
-            level_start_in_text.text = string.Format( "{0} seconds...", Mathf.Floor(ttl) );
-
 
         }
 
