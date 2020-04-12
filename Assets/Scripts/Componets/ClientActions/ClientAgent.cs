@@ -10,17 +10,18 @@ public class ClientAgent : ClientAction
 
     [SerializeField] private ClientManager clientManager;
     private NavMeshAgent agent;
-
-    [SerializeField] private float moveSpeed = 5;
     
     private Vector3 location = Vector3.zero;
     public bool complete = false;
 
-    [SerializeField] private float completeRadius;
+    public bool Naving => !complete && !agent.isStopped && agent.remainingDistance > 0f;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        
+        agent.stoppingDistance = 0; // stop instantly 
+
     }
 
     private void Update ()
@@ -28,15 +29,9 @@ public class ClientAgent : ClientAction
 
         if ( complete ) return;
 
-        // ignore the distacne of the y axis
-        Vector3 playerPos = transform.position;
-        Vector3 targetPos = location;
-        targetPos.y = playerPos.y;
-
-        if ( Vector3.Distance( playerPos, targetPos) < completeRadius )
+        if ( !agent.pathPending && agent.remainingDistance == 0 )
         {
             agent.isStopped = true;
-            transform.position = targetPos;
             complete = true;
             // compleat the task.
             clientManager.CompleatAction();
