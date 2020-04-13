@@ -12436,7 +12436,6 @@ GameObject:
   m_Component:
   - component: {fileID: 322376389}
   - component: {fileID: 322376390}
-  - component: {fileID: 322376391}
   m_Layer: 0
   m_Name: RelicHomeBounds (3)
   m_TagString: Untagged
@@ -12471,21 +12470,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 19, y: 6, z: 19}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &322376391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322376388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f947069442bbf4a85cd38bc1883ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverObjectType: 0
-  clientManager: {fileID: 0}
-  serverObjectId: -1
 --- !u!1 &433589190
 GameObject:
   m_ObjectHideFlags: 0
@@ -12545,7 +12529,6 @@ GameObject:
   m_Component:
   - component: {fileID: 459340059}
   - component: {fileID: 459340060}
-  - component: {fileID: 459340061}
   m_Layer: 0
   m_Name: RelicHomeBounds (0)
   m_TagString: Untagged
@@ -12560,7 +12543,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459340058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -12580,28 +12563,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 19, y: 6, z: 19}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &459340061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459340058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f947069442bbf4a85cd38bc1883ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverObjectType: 0
-  clientManager: {fileID: 0}
-  serverObjectId: -1
 --- !u!43 &504279556
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5668
+  m_Name: pb_Mesh196654
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -12861,7 +12829,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
-  clientManager: {fileID: 0}
   serverObjectId: 3
 --- !u!1 &569950907
 GameObject:
@@ -13018,7 +12985,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
-  clientManager: {fileID: 0}
   serverObjectId: 2
 --- !u!1 &697218747
 GameObject:
@@ -13097,6 +13063,7 @@ MonoBehaviour:
     reg_key: 
   clientData: []
   currentClientId: 0
+  currentGameLoopState: 2
 --- !u!114 &725274090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15911,7 +15878,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
-  clientManager: {fileID: 0}
   serverObjectId: 0
 --- !u!1 &927569076
 GameObject:
@@ -20717,7 +20683,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 1
-  clientManager: {fileID: 0}
   serverObjectId: 1
 --- !u!1 &971829536
 GameObject:
@@ -21433,7 +21398,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5472
+  m_Name: pb_Mesh196038
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -21659,7 +21624,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5682
+  m_Name: pb_Mesh196686
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -21819,7 +21784,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5448
+  m_Name: pb_Mesh196002
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -22080,7 +22045,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5540
+  m_Name: pb_Mesh196302
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -27282,7 +27247,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1609942711}
   - component: {fileID: 1609942712}
-  - component: {fileID: 1609942713}
   m_Layer: 0
   m_Name: RelicHomeBounds (2)
   m_TagString: Untagged
@@ -27317,28 +27281,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 19, y: 6, z: 19}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1609942713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609942710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f947069442bbf4a85cd38bc1883ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverObjectType: 0
-  clientManager: {fileID: 0}
-  serverObjectId: -1
 --- !u!43 &1639626117
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5460
+  m_Name: pb_Mesh196022
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -30686,7 +30635,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5618
+  m_Name: pb_Mesh196470
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -36046,7 +35995,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1919723926}
   - component: {fileID: 1919723927}
-  - component: {fileID: 1919723928}
   m_Layer: 0
   m_Name: RelicHomeBounds (1)
   m_TagString: Untagged
@@ -36081,28 +36029,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 19, y: 6, z: 19}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1919723928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919723925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15f947069442bbf4a85cd38bc1883ba5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serverObjectType: 0
-  clientManager: {fileID: 0}
-  serverObjectId: -1
 --- !u!43 &2049665681
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5594
+  m_Name: pb_Mesh196380
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -36331,7 +36264,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh5700
+  m_Name: pb_Mesh196722
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

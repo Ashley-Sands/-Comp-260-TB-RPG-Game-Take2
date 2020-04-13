@@ -5,16 +5,19 @@ using UnityEngine;
 public class SpawnPlayer : MonoBehaviour
 {
 
+    public static Color[] SpwanColours;
+    private Color[] spwanColours = { Color.blue, Color.green, new Color( 1f, 0.4f, 0f ), Color.yellow };
+
     [Tooltip("the spwan id is where player of player id will be spwaned :) ")]
     [SerializeField] private int spawnId = -1;
     [SerializeField] private ClientManager playerPrefab;
     [SerializeField] private ClientManager clientPrefab;
-
+    
     void Awake()
     {
 
         GameCtrl.Inst.gameClientsSet += SpwanPlayers;
-
+        SpwanColours = spwanColours;
     }
 
     private void SpwanPlayers( Client[] clients )

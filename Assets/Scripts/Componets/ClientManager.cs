@@ -14,7 +14,8 @@ public class ClientManager : MonoBehaviour
 	[SerializeField] private ProjectileLauncher projectileLauncher;
 	[SerializeField] private Health health;
 	[SerializeField] private Lookat_Position lookAtPosition;
-	[SerializeField] private Build build;						// this should on be present on the play
+	[SerializeField] private Build build;                       // this should on be present on the play
+	[SerializeField] private Renderer renderer;
 
 	protected ClientAction currentAction;
 
@@ -39,6 +40,7 @@ public class ClientManager : MonoBehaviour
 	public virtual void Init( int pid )
 	{
 		playerId = pid;
+		renderer.material.color = SpawnPlayer.SpwanColours[ pid ];
 		serverObject.PlayerInit( pid );
 		// first things first update our position on the server.
 		serverObject.Send();

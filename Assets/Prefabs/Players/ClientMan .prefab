@@ -51,6 +51,7 @@ MonoBehaviour:
   health: {fileID: 3004753025715455525}
   lookAtPosition: {fileID: 5440393967377784880}
   build: {fileID: 0}
+  renderer: {fileID: 2852695134291958333}
 --- !u!1 &2852695133527277503
 GameObject:
   m_ObjectHideFlags: 0

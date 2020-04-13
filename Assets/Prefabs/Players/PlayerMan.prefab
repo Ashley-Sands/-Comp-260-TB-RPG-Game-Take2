@@ -459,8 +459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 3187718565817396240}
-  currentPlayerText: {fileID: 0}
-  playerListText: {fileID: 0}
 --- !u!1 &3187718563834287378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2861,7 +2859,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverObjectType: 0
-  clientManager: {fileID: 3187718565328829306}
   serverObjectId: 0
 --- !u!114 &7571302951379966632
 MonoBehaviour:
@@ -2876,9 +2873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clientManager: {fileID: 3187718565328829306}
-  moveSpeed: 5
   complete: 0
-  completeRadius: 0.25
 --- !u!114 &3479780368160898372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4452,13 +4447,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4f848377c455cf49a3ef761d532ad27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serverObject: {fileID: 3152853680788587652}
   clientAgent: {fileID: 7571302951379966632}
   itemHold: {fileID: 391020814938527501}
   projectileLauncher: {fileID: 6748221255628624615}
   health: {fileID: 1709199679064575046}
   lookAtPosition: {fileID: 3479780368160898372}
   build: {fileID: 5432778722240773897}
-  serverObject: {fileID: 3152853680788587652}
+  renderer: {fileID: 3187718564688640281}
+  uiAction_defaultTag: NavArea
   uiActions:
   - tag: Player
     uiHold: {fileID: 3187718565448662150}
@@ -5082,6 +5079,7 @@ GameObject:
   - component: {fileID: 2487951954833805716}
   - component: {fileID: 8814746594978440711}
   - component: {fileID: 3187718565522927300}
+  - component: {fileID: 6373338366406993581}
   m_Layer: 0
   m_Name: UIFunctions
   m_TagString: Untagged
@@ -5171,6 +5169,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3187718563916271173}
+--- !u!114 &6373338366406993581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3187718565522927298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f123d637d7b7e4f8f43ea129956a0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relicCountText: {fileID: 3187718564007238275}
 --- !u!1 &3187718565543309087
 GameObject:
   m_ObjectHideFlags: 0
