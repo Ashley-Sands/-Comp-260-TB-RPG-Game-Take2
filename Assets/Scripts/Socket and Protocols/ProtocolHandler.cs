@@ -67,6 +67,7 @@ namespace Protocol
                 { 'D', new ProtocolEvent() },     // Apply Damage
                 { 'R', new ProtocolEvent() },     // Look At Position
                 { 'B', new ProtocolEvent() },     // Build Object
+                { '+', new ProtocolEvent() },     // Build Object
 
                 { '#', new ProtocolEvent() }      // Server Object
                 // Dont forget to add it to Convert json as well :)
@@ -202,6 +203,9 @@ namespace Protocol
                     break;
                 case 'B':
                     newProto = JsonUtility.FromJson<BuildObject>( json );
+                    break;
+                case '+':
+                    newProto = JsonUtility.FromJson<RelicCount>( json );
                     break;
                 case '#':
                     newProto = JsonUtility.FromJson<ServerObject>( json );

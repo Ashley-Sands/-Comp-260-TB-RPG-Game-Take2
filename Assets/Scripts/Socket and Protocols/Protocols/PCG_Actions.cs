@@ -140,6 +140,14 @@ namespace Protocol
         public int t;
 
     }
+
+    public class RelicCount : BaseGameAction
+    {
+        public override char Identity => '+';
+
+        public int count;
+
+    }
     // TODO: move below into own file
 
     // Altho this inherits from BaseProtocol its an action that can only happen in the game
