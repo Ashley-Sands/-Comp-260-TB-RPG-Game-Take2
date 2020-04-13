@@ -16,7 +16,13 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
     [SerializeField] private Vector3 holdOffset;
     [Tooltip("ui to display when i player has an item.")]
     [SerializeField] private GameObject[] toggleOnUi; 
-    [SerializeField] private GameObject[] toggleOffUi; 
+    [SerializeField] private GameObject[] toggleOffUi;
+
+    private void Awake ()
+    {
+        GameCtrl.Inst.gameLoopEvent += TurnEnded;
+    }
+
     private void Update ()
     {
 
@@ -42,7 +48,7 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
         ToggleUI( toggleOffUi, !(currentHoldObject != null) );
     }
 
-    public void DropItem()
+    public void DropItem(bool compleatAction = true)
     {
 
         Vector3 offset = new Vector3( 0, holdOffset.y, 0 );
@@ -53,10 +59,23 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
         currentHoldObject?.Use( false );    // un use the object if we have one
         currentHoldObject = null;
 
-        clientManager.CompleatAction();
+        if (compleatAction)
+            clientManager.CompleatAction();
 
         ToggleUI( toggleOnUi, !(currentHoldObject == null) );
         ToggleUI( toggleOffUi, currentHoldObject == null );
+
+    }
+
+    private void TurnEnded( Protocol.GameLoop.Actions action, int ttl )
+    {
+        // Now that the players turn is over we will have to directly drop the item
+        // and send the message to the sever bypassing the queue as is now not active.
+        if ( currentHoldObject != null ) // dorp it! :D
+        {
+            DropItem(false);
+            Protocol.GameAction gameAct = new Protocol.GameAction( Protocol.GameAction.Actions.DropItem );
+        }
 
     }
 
@@ -69,4 +88,8 @@ public class ItemHold : MonoBehaviour, ISelectServerObject
                 go.SetActive( active );
     }
 
+    private void OnDestroy ()
+    {
+        GameCtrl.Inst.gameLoopEvent -= TurnEnded;
+    }
 }

@@ -112,6 +112,7 @@ public class ClientManager : MonoBehaviour
 		if ( lookAtPos.player_id != playerId ) return;
 
 		lookAtPosition.LookAtPosition( lookAtPos.Position );
+		currentAction = lookAtPosition;
 
 	}
 
