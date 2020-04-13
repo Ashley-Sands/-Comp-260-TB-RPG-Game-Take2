@@ -20,7 +20,7 @@ public class UIAct_UpdateGameRelicCount : MonoBehaviour
         if ( relicCount.player_id != GameCtrl.Inst.playerData.playerId )
             return;
 
-        relicCountText.text = relicCount.count.ToString();
+        relicCountText.text = string.Format("{0} of {1}", relicCount.count.ToString(), 4);
 
     }
 
