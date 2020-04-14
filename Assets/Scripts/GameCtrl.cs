@@ -52,6 +52,16 @@ public class GameCtrl : MonoBehaviour
         Protocol.ProtocolHandler.Inst.Bind( '>', UpdateGameLoop );
     }
 
+    public string GetPlayerIdNickname( int playerId )
+    {
+        foreach ( Client c in clientData )
+            if ( c.playerId == playerId )
+                return c.nickname;
+
+        return "";
+
+    }
+
     private void IdentityRequest( Protocol.BaseProtocol prto )
     {
         Protocol.IdentityRequest request = prto.AsType<Protocol.IdentityRequest>();

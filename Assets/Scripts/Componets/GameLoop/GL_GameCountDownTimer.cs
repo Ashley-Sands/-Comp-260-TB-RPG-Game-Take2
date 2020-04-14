@@ -7,6 +7,7 @@ public class GL_GameCountDownTimer : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI nextPlayerText;
 
     [SerializeField] private Transform timerHold;
     private Vector2 timerHoldStartPosition;
@@ -46,12 +47,16 @@ public class GL_GameCountDownTimer : MonoBehaviour
                 timesUpTextHold.SetActive( true );
                 upNextTextHold.SetActive( false );
                 break;
-            case Protocol.GameLoop.Actions.Start:   // lerp out on start
-                StartCoroutine( LerpTimerHold( false ) );
+            case Protocol.GameLoop.Actions.Change:   // togle the text
                 // togle the correct text
+                nextPlayerText.text = GameCtrl.Inst.CurrentPlayerName;
                 timesUpTextHold.SetActive( false );
                 upNextTextHold.SetActive( true );
                 break;
+            case Protocol.GameLoop.Actions.Start:
+                StartCoroutine( LerpTimerHold( false ) );
+                break;
+
         }
 
     }
@@ -80,7 +85,8 @@ public class GL_GameCountDownTimer : MonoBehaviour
         float updateRate = 1f / 60f;
         YieldInstruction wait = new WaitForSeconds( updateRate );
 
-        while ( timeElapsed > 0f)
+
+        while ( timeElapsed < timerHoldLerpTime)
         {
 
             yield return wait;

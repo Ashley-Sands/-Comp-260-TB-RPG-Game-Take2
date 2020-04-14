@@ -48,7 +48,7 @@ namespace Protocol
 
     public class GameAction : BaseGameAction
     {
-        public enum Actions { DropItem = 0, LaunchProjectile = 1}
+        public enum Actions { DropItem = 0, LaunchProjectile = 1, EndTurn = 2, EndGame = 3}
         public override char Identity => 'A';
 
         public Actions Action {
