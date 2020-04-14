@@ -27,7 +27,7 @@ namespace Protocol
 
     }
 
-    public enum ClientStatusType { Client = 0, SceneLoaded = 1, GameReady = 2 }
+    public enum ClientStatusType { Client = 0, SceneLoaded = 1, GameReady = 2, LeaveGame = 3 }
 
     public class ClientStatus : BaseProtocol
     {
