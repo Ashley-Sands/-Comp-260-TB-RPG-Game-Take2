@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testing_hud: {fileID: 1372093314}
-  pingRate: 0.1
+  pingRate: 0.01
 --- !u!114 &320558480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c249986110ba374a9013a5dc9635feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frameRateLimit: 1000
   intervals: 2
 --- !u!1 &414107511
 GameObject:
