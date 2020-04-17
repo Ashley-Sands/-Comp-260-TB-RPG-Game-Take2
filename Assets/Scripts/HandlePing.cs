@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using AMSHelpers;
+using TMPro;
 
 public class HandlePing : MonoBehaviour
 {
 
     [SerializeField] private GameObject testing_hud;
+    [SerializeField] private TextMeshProUGUI pingTimeText;
     CSV csvFile;
-    public float pingRate = 0.1f; 
+    public float pingRate = 0.1f;
 
     private void Awake ()
     {
@@ -76,6 +78,7 @@ public class HandlePing : MonoBehaviour
         double time_to_server = ping.server_receive_time - ping.client_send_time;
         double return_time = millisSinceEpoch - ping.server_receive_time;
 
+        pingTimeText.text = string.Format( "ping: {0:f3}ms", total_time);
         Debug.LogFormat( ">>>>>>>>>>>>>PING (0)<<<<<<<<<<<<<<<<<< Client send time: {0}; Server recieve time: {1}; Client receive time: {2}", ping.client_send_time, ping.server_receive_time, millisSinceEpoch );
         Debug.LogFormat( ">>>>>>>>>>>>>PING (1)<<<<<<<<<<<<<<<<<< total time: {0}; Time to server: {1}; return time: {2}", total_time, time_to_server, return_time );
 
