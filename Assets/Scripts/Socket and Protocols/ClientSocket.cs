@@ -279,6 +279,7 @@ public class ClientSocket : MonoBehaviour
 
             byte[] dataLenBytes = new byte[ MESSAGE_LEN_PACKAGE_SIZE ];
             byte[] dataIdenityBytes = new byte[ MESSAGE_TYPE_PACKAGE_SIZE ];
+            byte[] dataBytes = encoder.GetBytes( data );
 
             // TODO: Make this work for different packet sizes
             // Get the bytes that we need
@@ -305,7 +306,7 @@ public class ClientSocket : MonoBehaviour
             {
                 socket.Send( dataLenBytes );                                    // send the length of the message
                 socket.Send( dataIdenityBytes );                                // send the idenity of the message
-                socket.Send( encoder.GetBytes( data ) );                        // send the message
+                socket.Send( dataBytes );                                       // send the message
 
             }
             catch ( System.Exception e )

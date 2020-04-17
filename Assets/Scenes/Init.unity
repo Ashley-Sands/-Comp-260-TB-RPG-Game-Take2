@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testing_hud: {fileID: 1372093314}
-  pingRate: 0.01
+  pingRate: 0.1
 --- !u!114 &320558480
 MonoBehaviour:
   m_ObjectHideFlags: 0
