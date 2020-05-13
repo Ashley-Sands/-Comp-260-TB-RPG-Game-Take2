@@ -42,7 +42,7 @@ public class ClientSocket : MonoBehaviour
 
     public bool localhost = true;
     private readonly string localhostIp = "127.0.0.1";
-    private readonly string hostIp = "159.65.80.187";
+    [SerializeField] private string hostIp = "159.65.80.187";
     private string HostIp => localhost ? localhostIp : hostIp;
     private readonly int port = 8222;
 
