@@ -482,6 +482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localhost: 0
+  hostIp: 13.69.63.30
   _autoReconnect: 1
 --- !u!4 &320558476
 Transform:
