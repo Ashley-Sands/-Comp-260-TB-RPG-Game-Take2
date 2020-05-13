@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5d62bc8a36ed049a2f0bc97db3aead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localhost: 1
+  localhost: 0
   _autoReconnect: 1
 --- !u!4 &320558476
 Transform:

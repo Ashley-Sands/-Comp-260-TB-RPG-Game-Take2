@@ -43,14 +43,14 @@ public class HandlePing : MonoBehaviour
     void Update ()
     {
 
-        if ( Input.GetKeyDown( KeyCode.P ) )
+        if ( Input.GetKeyDown( KeyCode.Alpha0 ) )
         {
 
             InvokeRepeating( "PingGame", 0, pingRate );
             testing_hud.SetActive( true );
         }
 
-        if ( Input.GetKeyDown( KeyCode.O ) )
+        if ( Input.GetKeyDown( KeyCode.Alpha9 ) )
         {
             CancelInvoke( "PingGame" );
             testing_hud.SetActive( false );
@@ -79,8 +79,6 @@ public class HandlePing : MonoBehaviour
         double return_time = millisSinceEpoch - ping.server_receive_time;
 
         pingTimeText.text = string.Format( "ping: {0:f3}ms", total_time);
-        Debug.LogFormat( ">>>>>>>>>>>>>PING (0)<<<<<<<<<<<<<<<<<< Client send time: {0}; Server recieve time: {1}; Client receive time: {2}", ping.client_send_time, ping.server_receive_time, millisSinceEpoch );
-        Debug.LogFormat( ">>>>>>>>>>>>>PING (1)<<<<<<<<<<<<<<<<<< total time: {0}; Time to server: {1}; return time: {2}", total_time, time_to_server, return_time );
 
         /* CSV HEADERS
 saveLoadFile.AddRow( new string[] {
