@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIAct_connect : MonoBehaviour
 {
 
     [SerializeField] private Button[] disableOnConnect;
+    [SerializeField] private TMP_InputField IpInput;
+
     private bool _updateButtons = false;
     private bool UpdateButtons {
         get{
@@ -58,6 +61,7 @@ public class UIAct_connect : MonoBehaviour
 
     public void Connect()
     {
+        ClientSocket.ActiveSocket.hostIp = IpInput.text;
         ClientSocket.ActiveSocket.InitializeSocket();
     }
 
