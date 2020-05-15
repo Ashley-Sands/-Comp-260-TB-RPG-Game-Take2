@@ -46,6 +46,13 @@ public class UIAct_connect : MonoBehaviour
         ClientSocket.ActiveSocket.connectionStatusChanged += StatusChange;
     }
 
+    public void Start ()
+    {
+        if ( PlayerPrefs.HasKey( "server-ip" ) )
+            IpInput.text = PlayerPrefs.GetString( "server-ip" );
+
+    }
+
     public void LateUpdate ()
     {
 
@@ -63,6 +70,9 @@ public class UIAct_connect : MonoBehaviour
     {
         ClientSocket.ActiveSocket.hostIp = IpInput.text;
         ClientSocket.ActiveSocket.InitializeSocket();
+
+        PlayerPrefs.SetString( "server-ip", IpInput.text );
+
     }
 
     public void StatusChange( ClientSocket.ConnectionStatus connStatus )
